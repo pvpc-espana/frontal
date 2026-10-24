@@ -38,3 +38,8 @@ build (si no, el *service worker* detectaría *hashes* incorrectos).
 
 El workflow `.github/workflows/publicar.yml` compila, pasa formato y pruebas, y despliega
 `dist/` en GitHub Pages en cada push a `main` (fuente de Pages: «GitHub Actions»).
+
+## Agradecimientos
+
+Gracias a [Claude](https://claude.ai), de [Anthropic](https://www.anthropic.com), por su
+inestimable ayuda en la creación y depuración de este proyecto.
