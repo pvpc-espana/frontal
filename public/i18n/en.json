@@ -74,5 +74,23 @@
     "fuente": "Data from",
     "tarifa": "PVPC, 2.0TD tariff, mainland Spain, Balearic and Canary Islands. Prices in €/kWh, taxes not included.",
     "codigo": "Open source on GitHub"
+  },
+  "recordatorios": {
+    "titulo": "Reminders",
+    "masBaratas": "Cheapest",
+    "masBaratasAyuda": "Mark the cheapest hours that haven't passed yet",
+    "marcar": "Remind me at {{hora}}",
+    "desmarcar": "Don't remind me at {{hora}}",
+    "seleccionadas": "{{n}} h marked",
+    "quitar": "Clear",
+    "anadir": "Add to calendar",
+    "dialogoTitulo": "Add to calendar",
+    "dialogoTexto": "An event with an alert at the start of each time slot will be created ({{n}} in total).",
+    "ics": "Device calendar",
+    "icsDetalle": ".ics file for iPhone, Outlook, Samsung and others",
+    "google": "Google Calendar (one slot at a time)",
+    "cerrar": "Close",
+    "evento": "⚡ Electricity at {{precio}} €/kWh",
+    "descripcion": "Electricity price (PVPC) in this time slot:"
   }
 }

@@ -74,5 +74,23 @@
     "fuente": "Données de",
     "tarifa": "PVPC, tarif 2.0TD, Espagne péninsulaire, Baléares et Canaries. Prix en €/kWh hors taxes.",
     "codigo": "Code source ouvert sur GitHub"
+  },
+  "recordatorios": {
+    "titulo": "Rappels",
+    "masBaratas": "Moins chères",
+    "masBaratasAyuda": "Marquer les heures les moins chères qui ne sont pas encore passées",
+    "marcar": "Me rappeler à {{hora}}",
+    "desmarcar": "Ne pas me rappeler à {{hora}}",
+    "seleccionadas": "{{n}} h marquées",
+    "quitar": "Effacer",
+    "anadir": "Ajouter au calendrier",
+    "dialogoTitulo": "Ajouter au calendrier",
+    "dialogoTexto": "Un événement avec une alerte au début de chaque créneau sera créé ({{n}} au total).",
+    "ics": "Calendrier de l’appareil",
+    "icsDetalle": "Fichier .ics pour iPhone, Outlook, Samsung et autres",
+    "google": "Google Agenda (un créneau à la fois)",
+    "cerrar": "Fermer",
+    "evento": "⚡ Électricité à {{precio}} €/kWh",
+    "descripcion": "Prix de l’électricité (PVPC) sur ce créneau :"
   }
 }

@@ -101,40 +101,43 @@ import { IconoComponent } from '../compartido/icono';
     .boton-dia:disabled {
       opacity: 0.35;
     }
-    /* Latido: avisa de que ya están publicados los precios del día siguiente */
+    /* Latido: avisa con un halo de que ya están publicados los precios del día siguiente */
     .boton-dia.latido {
-      color: #fff;
-      background: var(--acento);
-      border-color: transparent;
-      animation: latido 1.6s ease-in-out infinite;
-    }
-    .boton-dia.latido:not(:disabled):hover {
-      background: var(--acento);
-      filter: brightness(1.1);
+      color: var(--acento);
+      border-color: color-mix(in oklab, var(--acento) 45%, var(--borde));
+      animation: latido 1.8s ease-in-out infinite;
     }
     @keyframes latido {
       0%,
-      40%,
+      45%,
       100% {
         transform: scale(1);
-        box-shadow: 0 0 0 0 color-mix(in oklab, var(--acento) 55%, transparent);
+        box-shadow:
+          var(--sombra-suave),
+          0 0 0 0 color-mix(in oklab, var(--acento) 40%, transparent);
       }
       12% {
-        transform: scale(1.1);
-        box-shadow: 0 0 0 0.45rem color-mix(in oklab, var(--acento) 30%, transparent);
+        transform: scale(1.04);
+        box-shadow:
+          var(--sombra-suave),
+          0 0 0 0.3rem color-mix(in oklab, var(--acento) 22%, transparent);
       }
       24% {
-        transform: scale(1.02);
+        transform: scale(1);
       }
-      32% {
-        transform: scale(1.08);
-        box-shadow: 0 0 1.1rem 0.6rem color-mix(in oklab, var(--acento) 0%, transparent);
+      34% {
+        transform: scale(1.03);
+        box-shadow:
+          var(--sombra-suave),
+          0 0 0.9rem 0.45rem color-mix(in oklab, var(--acento) 0%, transparent);
       }
     }
     @media (prefers-reduced-motion: reduce) {
       .boton-dia.latido {
         animation: none;
-        box-shadow: 0 0 0 0.3rem color-mix(in oklab, var(--acento) 35%, transparent);
+        box-shadow:
+          var(--sombra-suave),
+          0 0 0 0.2rem color-mix(in oklab, var(--acento) 25%, transparent);
       }
     }
     .texto {

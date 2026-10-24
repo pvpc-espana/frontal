@@ -74,5 +74,23 @@
     "fuente": "Dados de",
     "tarifa": "PVPC, tarifa 2.0TD, Espanha peninsular, Baleares e Canárias. Preços em €/kWh sem impostos.",
     "codigo": "Código aberto no GitHub"
+  },
+  "recordatorios": {
+    "titulo": "Lembretes",
+    "masBaratas": "Mais baratas",
+    "masBaratasAyuda": "Marcar as horas mais baratas que ainda não passaram",
+    "marcar": "Lembrar às {{hora}}",
+    "desmarcar": "Não lembrar às {{hora}}",
+    "seleccionadas": "{{n}} h marcadas",
+    "quitar": "Limpar",
+    "anadir": "Adicionar ao calendário",
+    "dialogoTitulo": "Adicionar ao calendário",
+    "dialogoTexto": "Será criado um evento com alerta no início de cada período ({{n}} no total).",
+    "ics": "Calendário do dispositivo",
+    "icsDetalle": "Ficheiro .ics para iPhone, Outlook, Samsung e outros",
+    "google": "Google Calendar (um período de cada vez)",
+    "cerrar": "Fechar",
+    "evento": "⚡ Luz a {{precio}} €/kWh",
+    "descripcion": "Preço da luz (PVPC) neste período:"
   }
 }

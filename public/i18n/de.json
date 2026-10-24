@@ -74,5 +74,23 @@
     "fuente": "Daten von",
     "tarifa": "PVPC, Tarif 2.0TD, spanisches Festland, Balearen und Kanaren. Preise in €/kWh ohne Steuern.",
     "codigo": "Open Source auf GitHub"
+  },
+  "recordatorios": {
+    "titulo": "Erinnerungen",
+    "masBaratas": "Günstigste",
+    "masBaratasAyuda": "Die günstigsten noch nicht vergangenen Stunden markieren",
+    "marcar": "Um {{hora}} erinnern",
+    "desmarcar": "Nicht um {{hora}} erinnern",
+    "seleccionadas": "{{n}} Std. markiert",
+    "quitar": "Entfernen",
+    "anadir": "Zum Kalender hinzufügen",
+    "dialogoTitulo": "Zum Kalender hinzufügen",
+    "dialogoTexto": "Es wird ein Termin mit Erinnerung zu Beginn jedes Zeitfensters erstellt ({{n}} insgesamt).",
+    "ics": "Gerätekalender",
+    "icsDetalle": ".ics-Datei für iPhone, Outlook, Samsung und andere",
+    "google": "Google Kalender (jeweils ein Zeitfenster)",
+    "cerrar": "Schließen",
+    "evento": "⚡ Strom zu {{precio}} €/kWh",
+    "descripcion": "Strompreis (PVPC) in diesem Zeitfenster:"
   }
 }

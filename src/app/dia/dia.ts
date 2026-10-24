@@ -21,12 +21,15 @@ import { PreciosService } from '../core/precios.service';
 import { Periodo, construirPeriodos } from './periodos';
 import { NavegacionDiaComponent } from './navegacion-dia';
 import { GraficoComponent } from './grafico';
+import { RecordatoriosComponent } from './recordatorios';
+import { Franja, TextosEvento, agruparFranjas } from '../core/calendario';
 
 type Estado = 'cargando' | 'listo' | 'error';
 
 @Component({
   selector: 'app-dia',
   imports: [
+    RecordatoriosComponent,
     TranslocoPipe,
     IconoComponent,
     DeslizarDirective,
@@ -46,6 +49,7 @@ export class DiaComponent {
     initialValue: '',
   });
   private readonly titulo = inject(Title);
+  private readonly transloco = inject(TranslocoService);
 
   /** Parámetros de la ruta (`/:idioma/:fecha`); sin fecha se muestra hoy. */
   readonly idioma = input<string>(IDIOMA_POR_DEFECTO);
@@ -131,6 +135,47 @@ export class DiaComponent {
   protected readonly mananaDisponible = signal(false);
   private ultimaComprobacionManana = 0;
 
+  /** Inicios de los periodos marcados para añadir al calendario. */
+  protected readonly recordatorios = signal<ReadonlySet<number>>(new Set());
+
+  protected readonly franjasRecordatorio = computed(() =>
+    agruparFranjas(
+      this.periodos()
+        .filter((p) => p.precio !== null && this.recordatorios().has(p.inicio))
+        .map((p) => ({
+          inicio: p.inicio,
+          fin: p.fin,
+          precio: p.precio!,
+          linea: `${p.etiqueta}${p.zona ? ' ' + p.zona : ''} · ${this.precio(p.precio)} €/kWh`,
+        })),
+    ),
+  );
+
+  protected readonly textosEvento = computed<TextosEvento>(() => {
+    this.nombreApp(); // se recalcula cuando cambia el idioma
+    return {
+      titulo: (f: Franja) => {
+        const min = Math.min(...f.precios);
+        const max = Math.max(...f.precios);
+        const precio = min === max ? this.precio(min) : `${this.precio(min)}–${this.precio(max)}`;
+        return this.transloco.translate('recordatorios.evento', { precio });
+      },
+      descripcion: this.transloco.translate('recordatorios.descripcion'),
+      url: `https://pvpc.linaresdigital.com/${this.idioma()}/${this.dia()}`,
+    };
+  });
+
+  protected readonly horarioFranja = computed(() => {
+    const hora = new Intl.DateTimeFormat(this.locale(), {
+      timeZone: 'Europe/Madrid',
+      hour: '2-digit',
+      minute: '2-digit',
+      hourCycle: 'h23',
+    });
+    return (f: Franja) =>
+      `${hora.format(f.inicio)} – ${hora.format(f.fin).replace(/^00:00$/, '24:00')}`;
+  });
+
   /** Sin datos: ¿todavía no se han publicado o no los habrá? */
   protected readonly pendiente = computed(() => this.dia() >= this.hoy());
 
@@ -189,6 +234,34 @@ export class DiaComponent {
     this.seleccion.update((actual) => (actual === indice ? null : indice));
   }
 
+  /** Sólo se pueden recordar horas con precio que aún no han terminado. */
+  protected recordable(p: Periodo): boolean {
+    return p.precio !== null && p.fin > this.ahora();
+  }
+
+  protected alternarRecordatorio(p: Periodo): void {
+    this.recordatorios.update((actual) => {
+      const nuevo = new Set(actual);
+      if (!nuevo.delete(p.inicio)) nuevo.add(p.inicio);
+      return nuevo;
+    });
+  }
+
+  /** Marca las horas «de las más baratas» (icono ✅) que aún no han pasado. */
+  protected marcarBaratas(): void {
+    this.recordatorios.set(
+      new Set(
+        this.periodos()
+          .filter((p) => this.recordable(p) && p.clase?.icono === 'muy-barata')
+          .map((p) => p.inicio),
+      ),
+    );
+  }
+
+  protected limpiarRecordatorios(): void {
+    this.recordatorios.set(new Set());
+  }
+
   protected reintentar(): void {
     this.cargar(this.dia(), true);
   }
@@ -229,6 +302,7 @@ export class DiaComponent {
   private async cargar(fecha: string, forzar = false): Promise<void> {
     if (forzar) this.precios.olvidar(fecha);
     this.seleccion.set(null);
+    if (!forzar) this.recordatorios.set(new Set());
     this.estado.set('cargando');
     try {
       const datos = await this.precios.dia(fecha);

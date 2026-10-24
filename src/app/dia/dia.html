@@ -108,7 +108,19 @@
 
     <!-- Lista de horas: siempre todas, haya precios o no -->
     <section class="tarjeta lista">
-      <h2 class="titulo-seccion">{{ 'lista.titulo' | transloco }}</h2>
+      <div class="cabecera-lista">
+        <h2 class="titulo-seccion">{{ 'lista.titulo' | transloco }}</h2>
+        @if (conPrecios()) {
+          <button
+            type="button"
+            class="boton-baratas"
+            (click)="marcarBaratas()"
+            [title]="'recordatorios.masBaratasAyuda' | transloco"
+          >
+            <app-icono nombre="campana" />{{ 'recordatorios.masBaratas' | transloco }}
+          </button>
+        }
+      </div>
       <ol class="horas">
         @for (p of periodos(); track p.inicio; let i = $index) {
           <li>
@@ -148,12 +160,36 @@
                 <span class="icono-tramo"></span>
               }
             </button>
+            @let marcada = recordatorios().has(p.inicio);
+            <button
+              type="button"
+              class="campana"
+              [class.activa]="marcada"
+              [disabled]="!recordable(p)"
+              [attr.aria-pressed]="marcada"
+              [attr.aria-label]="
+                (marcada ? 'recordatorios.desmarcar' : 'recordatorios.marcar')
+                  | transloco: { hora: p.etiqueta }
+              "
+              (click)="alternarRecordatorio(p)"
+            >
+              <app-icono [nombre]="marcada ? 'campana-activa' : 'campana'" />
+            </button>
           </li>
         }
       </ol>
     </section>
   </div>
 }
+
+<app-recordatorios
+  [cantidad]="recordatorios().size"
+  [franjas]="franjasRecordatorio()"
+  [textos]="textosEvento()"
+  [horario]="horarioFranja()"
+  [nombreFichero]="'pvpc-' + dia() + '.ics'"
+  (limpiar)="limpiarRecordatorios()"
+/>
 
 <app-navegacion-dia
   class="navegacion-inferior"

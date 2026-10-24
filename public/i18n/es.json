@@ -74,5 +74,23 @@
     "fuente": "Datos de",
     "tarifa": "PVPC, tarifa 2.0TD, península, Baleares y Canarias. Precios en €/kWh con impuestos no incluidos.",
     "codigo": "Código abierto en GitHub"
+  },
+  "recordatorios": {
+    "titulo": "Recordatorios",
+    "masBaratas": "Más baratas",
+    "masBaratasAyuda": "Marcar las horas más baratas que aún no han pasado",
+    "marcar": "Recordar la hora {{hora}}",
+    "desmarcar": "No recordar la hora {{hora}}",
+    "seleccionadas": "{{n}} h marcadas",
+    "quitar": "Quitar",
+    "anadir": "Añadir al calendario",
+    "dialogoTitulo": "Añadir al calendario",
+    "dialogoTexto": "Se creará un evento con aviso al comienzo de cada franja ({{n}} en total).",
+    "ics": "Calendario del dispositivo",
+    "icsDetalle": "Fichero .ics para iPhone, Outlook, Samsung y otros",
+    "google": "Google Calendar (una franja cada vez)",
+    "cerrar": "Cerrar",
+    "evento": "⚡ Luz a {{precio}} €/kWh",
+    "descripcion": "Precio de la luz (PVPC) en esta franja:"
   }
 }

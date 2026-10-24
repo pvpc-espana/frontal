@@ -13,7 +13,13 @@ export type NombreIcono =
   | 'muy-cara'
   | 'reloj'
   | 'reintentar'
-  | 'calendario';
+  | 'calendario'
+  | 'campana'
+  | 'campana-activa'
+  | 'estrella'
+  | 'descargar'
+  | 'externo'
+  | 'cerrar';
 
 /** Iconos SVG propios: aspecto idéntico en todos los sistemas (a diferencia de los emojis). */
 @Component({
@@ -95,6 +101,25 @@ export type NombreIcono =
         @case ('calendario') {
           <rect x="3" y="4.5" width="18" height="16.5" rx="2.5" />
           <path d="M3 9.5h18M8 2.5v4M16 2.5v4" />
+        }
+        @case ('campana') {
+          <path d="M6 8a6 6 0 0112 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.9 1.9 0 003.4 0" />
+        }
+        @case ('campana-activa') {
+          <path d="M6 8a6 6 0 0112 0c0 7 3 9 3 9H3s3-2 3-9z" fill="currentColor" />
+          <path d="M10.3 21a1.9 1.9 0 003.4 0" />
+        }
+        @case ('estrella') {
+          <path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.6 6.6 19.5l1.2-6L3.3 9.3l6.1-.7L12 3z" />
+        }
+        @case ('descargar') {
+          <path d="M12 3v12M7 10l5 5 5-5M4 21h16" />
+        }
+        @case ('externo') {
+          <path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5" />
+        }
+        @case ('cerrar') {
+          <path d="M6 6l12 12M18 6L6 18" />
         }
       }
     </svg>
