@@ -19,6 +19,17 @@ export function fechaEnMadrid(instante: Date | number = Date.now()): string {
   return formatoFecha.format(instante);
 }
 
+const formatoHora = new Intl.DateTimeFormat('en-GB', {
+  timeZone: ZONA,
+  hour: 'numeric',
+  hourCycle: 'h23',
+});
+
+/** Hora (0-23) de un instante en hora peninsular. */
+export function horaEnMadrid(instante: Date | number = Date.now()): number {
+  return Number(formatoHora.format(instante));
+}
+
 export function esFechaValida(valor: unknown): valor is string {
   if (typeof valor !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(valor)) return false;
   const [a, m, d] = valor.split('-').map(Number);

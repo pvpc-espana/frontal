@@ -44,9 +44,13 @@ import { IconoComponent } from '../compartido/icono';
       <button
         type="button"
         class="boton-dia"
+        [class.latido]="destacarSiguiente()"
         (click)="siguiente.emit()"
         [disabled]="!puedeSiguiente()"
-        [attr.aria-label]="'navegacion.siguiente' | transloco"
+        [attr.aria-label]="
+          (destacarSiguiente() ? 'navegacion.mananaDisponible' : 'navegacion.siguiente') | transloco
+        "
+        [title]="destacarSiguiente() ? ('navegacion.mananaDisponible' | transloco) : ''"
       >
         <span class="texto">{{ 'navegacion.siguienteCorto' | transloco }}</span>
         <app-icono nombre="siguiente" />
@@ -97,6 +101,42 @@ import { IconoComponent } from '../compartido/icono';
     .boton-dia:disabled {
       opacity: 0.35;
     }
+    /* Latido: avisa de que ya están publicados los precios del día siguiente */
+    .boton-dia.latido {
+      color: #fff;
+      background: var(--acento);
+      border-color: transparent;
+      animation: latido 1.6s ease-in-out infinite;
+    }
+    .boton-dia.latido:not(:disabled):hover {
+      background: var(--acento);
+      filter: brightness(1.1);
+    }
+    @keyframes latido {
+      0%,
+      40%,
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 color-mix(in oklab, var(--acento) 55%, transparent);
+      }
+      12% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 0.45rem color-mix(in oklab, var(--acento) 30%, transparent);
+      }
+      24% {
+        transform: scale(1.02);
+      }
+      32% {
+        transform: scale(1.08);
+        box-shadow: 0 0 1.1rem 0.6rem color-mix(in oklab, var(--acento) 0%, transparent);
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .boton-dia.latido {
+        animation: none;
+        box-shadow: 0 0 0 0.3rem color-mix(in oklab, var(--acento) 35%, transparent);
+      }
+    }
     .texto {
       display: none;
     }
@@ -146,6 +186,8 @@ export class NavegacionDiaComponent {
   readonly puedeAnterior = input(true);
   readonly puedeSiguiente = input(true);
   readonly mostrarFecha = input(true);
+  /** Hace latir el botón «siguiente» (p. ej. cuando ya hay precios de mañana). */
+  readonly destacarSiguiente = input(false);
   readonly anterior = output<void>();
   readonly siguiente = output<void>();
   readonly hoy = output<void>();

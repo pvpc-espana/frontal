@@ -15,7 +15,8 @@
     "anteriorCorto": "Previous",
     "siguienteCorto": "Next",
     "irAHoy": "Go to today",
-    "hoy": "Go to today"
+    "hoy": "Go to today",
+    "mananaDisponible": "Next day: tomorrow’s prices are available"
   },
   "relativo": {
     "hoy": "Today",

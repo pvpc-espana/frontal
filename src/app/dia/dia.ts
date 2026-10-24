@@ -15,7 +15,7 @@ import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 import { IconoComponent } from '../compartido/icono';
 import { DeslizarDirective } from '../compartido/deslizar';
 import { IDIOMA_POR_DEFECTO, LOCALES, esIdioma } from '../core/config';
-import { fechaEnMadrid, sumarDias } from '../core/fechas';
+import { fechaEnMadrid, horaEnMadrid, sumarDias } from '../core/fechas';
 import { DiaPvpc, IndicePvpc } from '../core/modelos';
 import { PreciosService } from '../core/precios.service';
 import { Periodo, construirPeriodos } from './periodos';
@@ -127,6 +127,10 @@ export class DiaComponent {
     return this.dia() < (ultima && ultima > manana ? ultima : manana);
   });
 
+  /** Viendo hoy, ¿ya se han publicado los precios de mañana? Hace latir el botón «siguiente». */
+  protected readonly mananaDisponible = signal(false);
+  private ultimaComprobacionManana = 0;
+
   /** Sin datos: ¿todavía no se han publicado o no los habrá? */
   protected readonly pendiente = computed(() => this.dia() >= this.hoy());
 
@@ -136,10 +140,14 @@ export class DiaComponent {
   );
 
   constructor() {
-    const reloj = setInterval(() => this.ahora.set(Date.now()), 30_000);
+    const reloj = setInterval(() => {
+      this.ahora.set(Date.now());
+      this.comprobarManana();
+    }, 30_000);
     const alVolver = () => {
       if (document.visibilityState !== 'visible') return;
       this.ahora.set(Date.now());
+      this.comprobarManana(true);
       // Si faltaban precios de hoy o mañana, pueden haberse publicado mientras tanto
       if (!this.datos() && this.pendiente()) this.cargar(this.dia(), true);
     };
@@ -197,6 +205,27 @@ export class DiaComponent {
     this.router.navigate(['/', ...destino]);
   }
 
+  /**
+   * Desde las 20:00 (hora peninsular), viendo el día de hoy ya cargado, comprueba cada
+   * 5 minutos si se han publicado los precios de mañana (Red Eléctrica los publica a
+   * partir de esa hora) para avisar con el botón «siguiente».
+   */
+  private async comprobarManana(forzar = false): Promise<void> {
+    const ahora = Date.now();
+    if (this.mananaDisponible() || this.dia() !== this.hoy() || this.estado() !== 'listo') return;
+    if (horaEnMadrid(ahora) < 20) return;
+    if (!forzar && ahora - this.ultimaComprobacionManana < 5 * 60_000) return;
+    this.ultimaComprobacionManana = ahora;
+    const manana = sumarDias(this.hoy(), 1);
+    this.precios.olvidar(manana);
+    try {
+      const datos = await this.precios.dia(manana);
+      if (datos && this.dia() === sumarDias(manana, -1)) this.mananaDisponible.set(true);
+    } catch {
+      // Sin conexión: se reintentará en la próxima comprobación
+    }
+  }
+
   private async cargar(fecha: string, forzar = false): Promise<void> {
     if (forzar) this.precios.olvidar(fecha);
     this.seleccion.set(null);
@@ -206,6 +235,8 @@ export class DiaComponent {
       if (fecha !== this.dia()) return; // el usuario ya ha cambiado de día
       this.datos.set(datos);
       this.estado.set('listo');
+      this.mananaDisponible.set(false);
+      this.comprobarManana(true);
       // Precarga los días vecinos para que el deslizamiento sea instantáneo
       const vecinos = [];
       if (this.puedeAnterior()) vecinos.push(sumarDias(fecha, -1));

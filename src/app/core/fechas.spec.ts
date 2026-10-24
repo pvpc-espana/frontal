@@ -1,10 +1,23 @@
 import { describe, expect, it } from 'vitest';
-import { esFechaValida, fechaEnMadrid, medianoche, periodosDelDia, sumarDias } from './fechas';
+import {
+  esFechaValida,
+  fechaEnMadrid,
+  horaEnMadrid,
+  medianoche,
+  periodosDelDia,
+  sumarDias,
+} from './fechas';
 
 describe('fechas', () => {
   it('calcula la fecha en hora peninsular', () => {
     // 23:30 UTC del 24 de julio ya es día 25 en Madrid (UTC+2)
     expect(fechaEnMadrid(Date.UTC(2026, 6, 24, 23, 30))).toBe('2026-07-25');
+  });
+
+  it('calcula la hora en hora peninsular', () => {
+    expect(horaEnMadrid(Date.UTC(2026, 9, 24, 18, 5))).toBe(20); // verano, UTC+2
+    expect(horaEnMadrid(Date.UTC(2026, 11, 1, 19, 0))).toBe(20); // invierno, UTC+1
+    expect(horaEnMadrid(Date.UTC(2026, 11, 1, 23, 30))).toBe(0);
   });
 
   it('valida fechas ISO', () => {
