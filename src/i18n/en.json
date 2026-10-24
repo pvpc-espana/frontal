@@ -92,5 +92,18 @@
     "cerrar": "Close",
     "evento": "⚡ Electricity at {{precio}} €/kWh",
     "descripcion": "Electricity price (PVPC) in this time slot:"
+  },
+  "actualizacion": {
+    "texto": "New version available",
+    "boton": "Update"
+  },
+  "instalar": {
+    "boton": "Install",
+    "ayuda": "Install as an app",
+    "iosTitulo": "Install on iPhone or iPad",
+    "iosPaso1": "Tap Safari's Share button",
+    "iosPaso2": "Choose “Add to Home Screen”",
+    "iosPaso3": "Confirm with “Add”",
+    "entendido": "Got it"
   }
 }

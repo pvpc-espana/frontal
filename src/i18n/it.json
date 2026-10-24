@@ -92,5 +92,18 @@
     "cerrar": "Chiudi",
     "evento": "⚡ Luce a {{precio}} €/kWh",
     "descripcion": "Prezzo della luce (PVPC) in questa fascia:"
+  },
+  "actualizacion": {
+    "texto": "Nuova versione disponibile",
+    "boton": "Aggiorna"
+  },
+  "instalar": {
+    "boton": "Installa",
+    "ayuda": "Installa come app",
+    "iosTitulo": "Installa su iPhone o iPad",
+    "iosPaso1": "Tocca il pulsante Condividi di Safari",
+    "iosPaso2": "Scegli «Aggiungi alla schermata Home»",
+    "iosPaso3": "Conferma con «Aggiungi»",
+    "entendido": "Ho capito"
   }
 }

@@ -92,5 +92,18 @@
     "cerrar": "Schließen",
     "evento": "⚡ Strom zu {{precio}} €/kWh",
     "descripcion": "Strompreis (PVPC) in diesem Zeitfenster:"
+  },
+  "actualizacion": {
+    "texto": "Neue Version verfügbar",
+    "boton": "Aktualisieren"
+  },
+  "instalar": {
+    "boton": "Installieren",
+    "ayuda": "Als App installieren",
+    "iosTitulo": "Auf iPhone oder iPad installieren",
+    "iosPaso1": "Tippe in Safari auf „Teilen“",
+    "iosPaso2": "Wähle „Zum Home-Bildschirm“",
+    "iosPaso3": "Bestätige mit „Hinzufügen“",
+    "entendido": "Verstanden"
   }
 }

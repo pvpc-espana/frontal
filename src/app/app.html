@@ -8,6 +8,18 @@
   </a>
 
   <div class="acciones">
+    @if (instalacion.disponible()) {
+      <button
+        type="button"
+        class="boton-instalar"
+        (click)="instalar()"
+        [attr.aria-label]="'instalar.boton' | transloco"
+        [title]="'instalar.ayuda' | transloco"
+      >
+        <app-icono nombre="instalar" />
+        <span class="texto-instalar">{{ 'instalar.boton' | transloco }}</span>
+      </button>
+    }
     <label class="selector-idioma">
       <app-icono nombre="idioma" />
       <span class="visualmente-oculto">{{ 'ajustes.idioma' | transloco }}</span>
@@ -34,6 +46,31 @@
     </button>
   </div>
 </header>
+
+@if (actualizacion.disponible()) {
+  <div class="aviso-version" role="status">
+    <app-icono nombre="nuevo" />
+    <span>{{ 'actualizacion.texto' | transloco }}</span>
+    <button type="button" (click)="actualizacion.actualizar()">
+      {{ 'actualizacion.boton' | transloco }}
+    </button>
+  </div>
+}
+
+<dialog #ayudaIos class="ayuda-ios" (click)="cerrarAyuda($event)" aria-labelledby="titulo-ios">
+  <h2 id="titulo-ios">{{ 'instalar.iosTitulo' | transloco }}</h2>
+  <ol>
+    <li>
+      {{ 'instalar.iosPaso1' | transloco }}
+      <app-icono nombre="compartir" class="icono-paso" />
+    </li>
+    <li>{{ 'instalar.iosPaso2' | transloco }}</li>
+    <li>{{ 'instalar.iosPaso3' | transloco }}</li>
+  </ol>
+  <button type="button" class="cerrar-ayuda" (click)="cerrarAyuda()">
+    {{ 'instalar.entendido' | transloco }}
+  </button>
+</dialog>
 
 <main class="principal">
   <router-outlet />

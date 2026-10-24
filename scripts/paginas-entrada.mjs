@@ -72,7 +72,7 @@ writeFileSync(join(SALIDA, 'index.html'), raiz);
 writeFileSync(join(SALIDA, '404.html'), raiz);
 
 for (const idioma of IDIOMAS) {
-  const textos = JSON.parse(readFileSync(join(SALIDA, 'i18n', `${idioma}.json`), 'utf8'));
+  const textos = JSON.parse(readFileSync(join('src', 'i18n', `${idioma}.json`), 'utf8'));
   mkdirSync(join(SALIDA, idioma), { recursive: true });
   writeFileSync(
     join(SALIDA, idioma, 'index.html'),

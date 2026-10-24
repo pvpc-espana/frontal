@@ -92,5 +92,18 @@
     "cerrar": "Fechar",
     "evento": "⚡ Luz a {{precio}} €/kWh",
     "descripcion": "Preço da luz (PVPC) neste período:"
+  },
+  "actualizacion": {
+    "texto": "Nova versão disponível",
+    "boton": "Atualizar"
+  },
+  "instalar": {
+    "boton": "Instalar",
+    "ayuda": "Instalar como aplicação",
+    "iosTitulo": "Instalar no iPhone ou iPad",
+    "iosPaso1": "Toque no botão Partilhar do Safari",
+    "iosPaso2": "Escolha «Adicionar ao ecrã principal»",
+    "iosPaso3": "Confirme com «Adicionar»",
+    "entendido": "Percebi"
   }
 }

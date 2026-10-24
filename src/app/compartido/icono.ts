@@ -19,7 +19,10 @@ export type NombreIcono =
   | 'estrella'
   | 'descargar'
   | 'externo'
-  | 'cerrar';
+  | 'cerrar'
+  | 'instalar'
+  | 'compartir'
+  | 'nuevo';
 
 /** Iconos SVG propios: aspecto idéntico en todos los sistemas (a diferencia de los emojis). */
 @Component({
@@ -120,6 +123,20 @@ export type NombreIcono =
         }
         @case ('cerrar') {
           <path d="M6 6l12 12M18 6L6 18" />
+        }
+        @case ('instalar') {
+          <rect x="6" y="2.5" width="12" height="19" rx="2.5" />
+          <path d="M12 7v7M9 11.5l3 3 3-3M10.5 18.5h3" />
+        }
+        @case ('compartir') {
+          <path
+            d="M12 3v12M8 7l4-4 4 4M7 10H5.5A1.5 1.5 0 004 11.5v8A1.5 1.5 0 005.5 21h13a1.5 1.5 0 001.5-1.5v-8a1.5 1.5 0 00-1.5-1.5H17"
+          />
+        }
+        @case ('nuevo') {
+          <path
+            d="M12 3l1.8 4.7L18.5 9l-4.7 1.8L12 15.5l-1.8-4.7L5.5 9l4.7-1.3L12 3zM18 15l.9 2.1L21 18l-2.1.9L18 21l-.9-2.1L15 18l2.1-.9L18 15z"
+          />
         }
       }
     </svg>

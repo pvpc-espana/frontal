@@ -1,0 +1,36 @@
+{
+  "$schema": "./node_modules/@angular/service-worker/config/schema.json",
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "aplicacion",
+      "installMode": "prefetch",
+      "resources": {
+        "files": ["/index.html", "/manifest.webmanifest", "/*.css", "/*.js"]
+      }
+    },
+    {
+      "name": "recursos",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": ["/media/**", "/*.png", "/*.svg"]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "precios",
+      "urls": [
+        "https://datos.pvpc.linaresdigital.com/**",
+        "https://raw.githubusercontent.com/pvpc-espana/datos/**"
+      ],
+      "cacheConfig": {
+        "strategy": "freshness",
+        "timeout": "6s",
+        "maxSize": 120,
+        "maxAge": "30d"
+      }
+    }
+  ]
+}

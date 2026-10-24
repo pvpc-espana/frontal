@@ -92,5 +92,18 @@
     "cerrar": "Cerrar",
     "evento": "⚡ Luz a {{precio}} €/kWh",
     "descripcion": "Precio de la luz (PVPC) en esta franja:"
+  },
+  "actualizacion": {
+    "texto": "Nueva versión disponible",
+    "boton": "Actualizar"
+  },
+  "instalar": {
+    "boton": "Instalar",
+    "ayuda": "Instalar como aplicación",
+    "iosTitulo": "Instalar en iPhone o iPad",
+    "iosPaso1": "Pulsa el botón Compartir de Safari",
+    "iosPaso2": "Elige «Añadir a pantalla de inicio»",
+    "iosPaso3": "Confirma con «Añadir»",
+    "entendido": "Entendido"
   }
 }

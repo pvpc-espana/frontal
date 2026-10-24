@@ -92,5 +92,18 @@
     "cerrar": "Fermer",
     "evento": "⚡ Électricité à {{precio}} €/kWh",
     "descripcion": "Prix de l’électricité (PVPC) sur ce créneau :"
+  },
+  "actualizacion": {
+    "texto": "Nouvelle version disponible",
+    "boton": "Mettre à jour"
+  },
+  "instalar": {
+    "boton": "Installer",
+    "ayuda": "Installer comme application",
+    "iosTitulo": "Installer sur iPhone ou iPad",
+    "iosPaso1": "Touchez le bouton Partager de Safari",
+    "iosPaso2": "Choisissez « Sur l’écran d’accueil »",
+    "iosPaso3": "Confirmez avec « Ajouter »",
+    "entendido": "Compris"
   }
 }

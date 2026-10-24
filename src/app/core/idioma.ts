@@ -1,15 +1,27 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Translation, TranslocoLoader } from '@jsverse/transloco';
+import { from } from 'rxjs';
+import { recargarSiFaltaModulo } from './recarga';
 import { IDIOMA_POR_DEFECTO, Idioma, esIdioma } from './config';
 
 const CLAVE = 'pvpc.idioma';
 
+/**
+ * Las traducciones se empaquetan como módulos con hash en el nombre: cada versión de la
+ * aplicación carga siempre sus propios textos, sin mezclarse con ficheros en caché.
+ */
 @Injectable({ providedIn: 'root' })
 export class CargadorTraducciones implements TranslocoLoader {
-  private readonly http = inject(HttpClient);
   getTranslation(idioma: string) {
-    return this.http.get<Translation>(`/i18n/${idioma}.json`);
+    return from(
+      import(`../../i18n/${idioma}.json`).then(
+        (m: { default: Translation }) => m.default,
+        (error) => {
+          recargarSiFaltaModulo(error);
+          throw error;
+        },
+      ),
+    );
   }
 }
 
