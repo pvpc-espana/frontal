@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { URL_DATOS } from './config';
+import { URL_DATOS, URL_DATOS_RESPALDO } from './config';
 import { fechaEnMadrid, sumarDias } from './fechas';
 import { DiaPvpc, IndicePvpc } from './modelos';
 
@@ -14,10 +14,7 @@ export class PreciosService {
     let pendiente = this.cache.get(fecha);
     if (!pendiente) {
       const [anio, mes] = fecha.split('-');
-      pendiente = this.leer<DiaPvpc>(
-        `${URL_DATOS}/${anio}/${mes}/${fecha}.json`,
-        this.reciente(fecha),
-      );
+      pendiente = this.leer<DiaPvpc>(`/${anio}/${mes}/${fecha}.json`, this.reciente(fecha));
       // Un error de red no se queda en caché para poder reintentar
       pendiente.catch(() => this.cache.delete(fecha));
       this.cache.set(fecha, pendiente);
@@ -35,7 +32,7 @@ export class PreciosService {
   }
 
   indiceDisponible(): Promise<IndicePvpc | null> {
-    this.indice ??= this.leer<IndicePvpc>(`${URL_DATOS}/indice.json`, true).catch(() => null);
+    this.indice ??= this.leer<IndicePvpc>('/indice.json', true).catch(() => null);
     return this.indice;
   }
 
@@ -44,10 +41,26 @@ export class PreciosService {
     return fecha >= sumarDias(fechaEnMadrid(), -1);
   }
 
-  private async leer<T>(url: string, revalidar: boolean): Promise<T | null> {
-    const respuesta = await fetch(url, { cache: revalidar ? 'no-cache' : 'default' });
-    if (respuesta.status === 404) return null;
-    if (!respuesta.ok) throw new Error(`HTTP ${respuesta.status}`);
-    return (await respuesta.json()) as T;
+  /** Fuentes en orden de preferencia; si la principal falla se pasa al respaldo. */
+  private fuentes = [URL_DATOS, URL_DATOS_RESPALDO];
+
+  private async leer<T>(ruta: string, revalidar: boolean): Promise<T | null> {
+    let ultimoError: unknown;
+    for (const base of [...this.fuentes]) {
+      try {
+        const respuesta = await fetch(base + ruta, { cache: revalidar ? 'no-cache' : 'default' });
+        if (respuesta.status === 404) return null;
+        if (!respuesta.ok) throw new Error(`HTTP ${respuesta.status}`);
+        return (await respuesta.json()) as T;
+      } catch (error) {
+        ultimoError = error;
+        // Durante el resto de la sesión se empieza directamente por la fuente que funciona
+        if (base === this.fuentes[0] && this.fuentes.length > 1) {
+          console.warn(`No se pudo leer ${base}${ruta}; se usa el respaldo`, error);
+          this.fuentes = [...this.fuentes.slice(1), base];
+        }
+      }
+    }
+    throw ultimoError;
   }
 }

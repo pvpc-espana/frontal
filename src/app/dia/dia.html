@@ -32,6 +32,9 @@
         <section class="tarjeta destacada aviso" role="alert">
           <h2>{{ 'error.titulo' | transloco }}</h2>
           <p>{{ 'error.texto' | transloco }}</p>
+          @if (detalleError()) {
+            <p class="detalle-error">{{ detalleError() }}</p>
+          }
           <button type="button" class="boton" (click)="reintentar()">
             <app-icono nombre="reintentar" />{{ 'error.reintentar' | transloco }}
           </button>

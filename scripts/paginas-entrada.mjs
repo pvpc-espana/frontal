@@ -9,7 +9,7 @@ import { join } from 'node:path';
 
 const SALIDA = 'dist';
 const SITIO = 'https://pvpc.linaresdigital.com';
-const DATOS = 'https://datos.pvpc.linaresdigital.com';
+const DATOS = 'https://datos.pvpc.linaresdigital.com https://raw.githubusercontent.com';
 const IDIOMAS = ['es', 'en', 'fr', 'de', 'it', 'pt'];
 const LOCALES = { es: 'es_ES', en: 'en_GB', fr: 'fr_FR', de: 'de_DE', it: 'it_IT', pt: 'pt_PT' };
 

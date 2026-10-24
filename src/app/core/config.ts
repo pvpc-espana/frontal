@@ -1,6 +1,13 @@
 /** URL base de los datos publicados por el núcleo. */
 export const URL_DATOS = 'https://datos.pvpc.linaresdigital.com/v1';
 
+/**
+ * Respaldo si el dominio de datos no responde (p. ej. certificado HTTPS aún sin emitir):
+ * los mismos ficheros servidos directamente desde el repositorio.
+ */
+export const URL_DATOS_RESPALDO =
+  'https://raw.githubusercontent.com/pvpc-espana/datos/main/docs/v1';
+
 export const IDIOMAS = ['es', 'en', 'fr', 'de', 'it', 'pt'] as const;
 export type Idioma = (typeof IDIOMAS)[number];
 export const IDIOMA_POR_DEFECTO: Idioma = 'es';

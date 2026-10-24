@@ -60,6 +60,8 @@ export class DiaComponent {
   });
 
   protected readonly estado = signal<Estado>('cargando');
+  /** Causa técnica del último error de carga, para poder diagnosticarlo. */
+  protected readonly detalleError = signal('');
   protected readonly datos = signal<DiaPvpc | null>(null);
   protected readonly indice = signal<IndicePvpc | null>(null);
   /** Dirección de la última navegación, para animar la entrada del nuevo día. */
@@ -209,8 +211,9 @@ export class DiaComponent {
       if (this.puedeAnterior()) vecinos.push(sumarDias(fecha, -1));
       if (this.puedeSiguiente()) vecinos.push(sumarDias(fecha, 1));
       this.precios.precargar(...vecinos);
-    } catch {
+    } catch (error) {
       if (fecha !== this.dia()) return;
+      this.detalleError.set(error instanceof Error ? error.message : String(error));
       this.datos.set(null);
       this.estado.set('error');
     }
