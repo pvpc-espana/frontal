@@ -13,7 +13,25 @@ const DATOS = 'https://datos.pvpc.linaresdigital.com https://raw.githubuserconte
 const IDIOMAS = ['es', 'en', 'fr', 'de', 'it', 'pt'];
 const LOCALES = { es: 'es_ES', en: 'en_GB', fr: 'fr_FR', de: 'de_DE', it: 'it_IT', pt: 'pt_PT' };
 
-const plantilla = readFileSync(join(SALIDA, 'index.html'), 'utf8');
+const AUTOR = 'Óscar Javier García Baudet';
+const textosIdioma = Object.fromEntries(
+  IDIOMAS.map((i) => [i, JSON.parse(readFileSync(join('src', 'i18n', `${i}.json`), 'utf8'))]),
+);
+
+// Portada de carga con los textos de todos los idiomas; el CSS muestra sólo los del
+// idioma que el script de <head> fija en <html lang> antes de pintar.
+const portada = IDIOMAS.map((i) => {
+  const { app } = textosIdioma[i];
+  return `<div class="portada-idioma" lang="${i}">
+          <p class="portada-subtitulo">${app.subtitulo}</p>
+          <p class="portada-cargando"><span class="portada-indicador"></span>${app.cargando}</p>
+          <p class="portada-autor">${app.creadoPor} ${AUTOR}</p>
+        </div>`;
+}).join('\n        ');
+
+const original = readFileSync(join(SALIDA, 'index.html'), 'utf8');
+const plantilla = original.replace(/<!--TEXTOS_PORTADA-->[\s\S]*<!--\/TEXTOS_PORTADA-->/, portada);
+if (plantilla === original) throw new Error('No se encuentra la portada de carga en index.html');
 
 // La CSP permite el script en línea del tema por su hash, nunca 'unsafe-inline'
 const scriptTema = /<script id="tema-inicial">([\s\S]*?)<\/script>/.exec(plantilla);
@@ -72,7 +90,7 @@ writeFileSync(join(SALIDA, 'index.html'), raiz);
 writeFileSync(join(SALIDA, '404.html'), raiz);
 
 for (const idioma of IDIOMAS) {
-  const textos = JSON.parse(readFileSync(join('src', 'i18n', `${idioma}.json`), 'utf8'));
+  const textos = textosIdioma[idioma];
   mkdirSync(join(SALIDA, idioma), { recursive: true });
   writeFileSync(
     join(SALIDA, idioma, 'index.html'),

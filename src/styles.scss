@@ -99,6 +99,85 @@ a:focus-visible {
   outline-offset: 2px;
 }
 
+/* Portada de carga (contenido inicial de <app-root>, ver index.html) */
+.portada {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 0.35rem;
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--texto);
+  background: var(--fondo);
+
+  p {
+    margin: 0;
+  }
+}
+
+.portada-logo {
+  inline-size: 5.5rem;
+  block-size: 5.5rem;
+  margin-block-end: 0.75rem;
+  border-radius: 1.4rem;
+  box-shadow: 0 16px 40px -14px #4f46e5;
+}
+
+.portada-titulo {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.portada-idioma {
+  display: none;
+}
+
+@each $idioma in es, en, fr, de, it, pt {
+  :root[lang='#{$idioma}'] .portada-idioma[lang='#{$idioma}'] {
+    display: contents;
+  }
+}
+
+.portada-subtitulo {
+  color: var(--tenue);
+}
+
+.portada-cargando {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-block-start: 1.75rem !important;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--tenue);
+}
+
+.portada-indicador {
+  inline-size: 1rem;
+  block-size: 1rem;
+  border: 2px solid color-mix(in oklab, var(--acento) 25%, transparent);
+  border-block-start-color: var(--acento);
+  border-radius: 50%;
+  animation: girar 0.8s linear infinite;
+}
+
+@keyframes girar {
+  to {
+    rotate: 360deg;
+  }
+}
+
+.portada-autor {
+  position: absolute;
+  inset-inline: 1rem;
+  inset-block-end: max(1.5rem, env(safe-area-inset-bottom));
+  font-size: 0.8rem;
+  color: var(--tenue);
+}
+
 .visualmente-oculto {
   position: absolute !important;
   inline-size: 1px;

@@ -24,6 +24,7 @@
     <link rel="icon" href="/icono.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/icono-180.png" />
     <link rel="manifest" href="/manifest.webmanifest" />
+    <!-- Antes de arrancar Angular: tema (evita el destello) e idioma de la portada de carga -->
     <script id="tema-inicial">
       (function () {
         try {
@@ -31,11 +32,46 @@
           var o =
             m === 'oscuro' || (m !== 'claro' && matchMedia('(prefers-color-scheme: dark)').matches);
           document.documentElement.setAttribute('data-tema', o ? 'oscuro' : 'claro');
+          var idiomas = ['es', 'en', 'fr', 'de', 'it', 'pt'];
+          var candidatos = [
+            location.pathname.split('/')[1],
+            localStorage.getItem('pvpc.idioma'),
+            (navigator.language || '').slice(0, 2),
+          ];
+          for (var i = 0; i < candidatos.length; i++) {
+            if (idiomas.indexOf(candidatos[i]) >= 0) {
+              document.documentElement.lang = candidatos[i];
+              break;
+            }
+          }
         } catch (e) {}
       })();
     </script>
   </head>
   <body>
-    <app-root></app-root>
+    <app-root>
+      <!-- Portada de carga: visible hasta que Angular arranca y sustituye este contenido.
+           scripts/paginas-entrada.mjs añade los textos de todos los idiomas. -->
+      <div class="portada" role="status">
+        <svg class="portada-logo" viewBox="0 0 64 64" aria-hidden="true">
+          <defs>
+            <linearGradient id="portada-degradado" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#4f46e5" />
+              <stop offset="1" stop-color="#8b5cf6" />
+            </linearGradient>
+          </defs>
+          <rect width="64" height="64" rx="16" fill="url(#portada-degradado)" />
+          <path d="M35 10L16 36h14l-3 18 21-27H33l2-17z" fill="#fff" />
+        </svg>
+        <p class="portada-titulo">PVPC</p>
+        <!--TEXTOS_PORTADA-->
+        <div class="portada-idioma" lang="es">
+          <p class="portada-subtitulo">Precio de la luz hora a hora</p>
+          <p class="portada-cargando"><span class="portada-indicador"></span>Cargando…</p>
+          <p class="portada-autor">Creado por Óscar Javier García Baudet</p>
+        </div>
+        <!--/TEXTOS_PORTADA-->
+      </div>
+    </app-root>
   </body>
 </html>

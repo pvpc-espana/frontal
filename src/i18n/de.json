@@ -2,7 +2,9 @@
   "app": {
     "nombre": "PVPC",
     "subtitulo": "Strompreis Stunde für Stunde",
-    "titulo": "Strompreis · PVPC"
+    "titulo": "Strompreis · PVPC",
+    "cargando": "Wird geladen…",
+    "creadoPor": "Erstellt von"
   },
   "meta": {
     "titulo": "Strompreis in Spanien heute und morgen · PVPC",

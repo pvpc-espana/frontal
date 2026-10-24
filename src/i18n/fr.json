@@ -2,7 +2,9 @@
   "app": {
     "nombre": "PVPC",
     "subtitulo": "Prix de l’électricité heure par heure",
-    "titulo": "Prix de l’électricité · PVPC"
+    "titulo": "Prix de l’électricité · PVPC",
+    "cargando": "Chargement…",
+    "creadoPor": "Créé par"
   },
   "meta": {
     "titulo": "Prix de l’électricité en Espagne aujourd’hui et demain · PVPC",

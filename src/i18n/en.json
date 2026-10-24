@@ -2,7 +2,9 @@
   "app": {
     "nombre": "PVPC",
     "subtitulo": "Hourly electricity price in Spain",
-    "titulo": "Electricity price · PVPC"
+    "titulo": "Electricity price · PVPC",
+    "cargando": "Loading…",
+    "creadoPor": "Created by"
   },
   "meta": {
     "titulo": "Electricity price in Spain today and tomorrow · PVPC",

@@ -2,7 +2,9 @@
   "app": {
     "nombre": "PVPC",
     "subtitulo": "Prezzo della luce ora per ora",
-    "titulo": "Prezzo della luce · PVPC"
+    "titulo": "Prezzo della luce · PVPC",
+    "cargando": "Caricamento…",
+    "creadoPor": "Creato da"
   },
   "meta": {
     "titulo": "Prezzo della luce in Spagna oggi e domani · PVPC",

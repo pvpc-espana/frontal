@@ -2,7 +2,9 @@
   "app": {
     "nombre": "PVPC",
     "subtitulo": "Precio de la luz hora a hora",
-    "titulo": "Precio de la luz · PVPC"
+    "titulo": "Precio de la luz · PVPC",
+    "cargando": "Cargando…",
+    "creadoPor": "Creado por"
   },
   "meta": {
     "titulo": "Precio de la luz hoy y mañana · PVPC",
