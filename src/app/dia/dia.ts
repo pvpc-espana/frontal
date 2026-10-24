@@ -18,6 +18,7 @@ import { IDIOMA_POR_DEFECTO, LOCALES, esIdioma } from '../core/config';
 import { fechaEnMadrid, horaEnMadrid, sumarDias } from '../core/fechas';
 import { DiaPvpc, IndicePvpc } from '../core/modelos';
 import { PreciosService } from '../core/precios.service';
+import { AvisoService } from '../core/aviso.service';
 import { Periodo, construirPeriodos } from './periodos';
 import { NavegacionDiaComponent } from './navegacion-dia';
 import { GraficoComponent } from './grafico';
@@ -137,6 +138,8 @@ export class DiaComponent {
 
   /** Inicios de los periodos marcados para añadir al calendario. */
   protected readonly recordatorios = signal<ReadonlySet<number>>(new Set());
+  protected readonly botonBaratasPulsado = signal(false);
+  private readonly avisos = inject(AvisoService);
 
   protected readonly franjasRecordatorio = computed(() =>
     agruparFranjas(
@@ -249,13 +252,26 @@ export class DiaComponent {
 
   /** Marca las horas «de las más baratas» (icono ✅) que aún no han pasado. */
   protected marcarBaratas(): void {
-    this.recordatorios.set(
-      new Set(
-        this.periodos()
-          .filter((p) => this.recordable(p) && p.clase?.icono === 'muy-barata')
-          .map((p) => p.inicio),
-      ),
-    );
+    // Pequeña animación del botón como respuesta inmediata a la pulsación
+    this.botonBaratasPulsado.set(false);
+    requestAnimationFrame(() => this.botonBaratasPulsado.set(true));
+
+    const baratas = this.periodos()
+      .filter((p) => this.recordable(p) && p.clase?.icono === 'muy-barata')
+      .map((p) => p.inicio);
+    this.recordatorios.set(new Set(baratas));
+
+    if (baratas.length) {
+      const clave = baratas.length === 1 ? 'recordatorios.avisoUna' : 'recordatorios.avisoVarias';
+      this.avisos.mostrar(this.transloco.translate(clave, { n: baratas.length }), 'exito');
+    } else {
+      const pasado = this.periodos().every((p) => p.fin <= this.ahora());
+      this.avisos.mostrar(
+        this.transloco.translate(
+          pasado ? 'recordatorios.avisoPasado' : 'recordatorios.avisoNinguna',
+        ),
+      );
+    }
   }
 
   protected limpiarRecordatorios(): void {

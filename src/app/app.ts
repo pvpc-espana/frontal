@@ -8,6 +8,7 @@ import { IDIOMAS, IDIOMA_POR_DEFECTO, Idioma, NOMBRES_IDIOMA, esIdioma } from '.
 import { TemaService } from './core/tema.service';
 import { ActualizacionService } from './core/actualizacion.service';
 import { InstalacionService } from './core/instalacion.service';
+import { AvisoService } from './core/aviso.service';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,7 @@ export class App {
   protected readonly tema = inject(TemaService);
   protected readonly actualizacion = inject(ActualizacionService);
   protected readonly instalacion = inject(InstalacionService);
+  protected readonly avisos = inject(AvisoService);
   private readonly ayudaIos = viewChild.required<ElementRef<HTMLDialogElement>>('ayudaIos');
   protected readonly idioma = toSignal(
     inject(TranslocoService).langChanges$.pipe(map((i) => (esIdioma(i) ? i : IDIOMA_POR_DEFECTO))),

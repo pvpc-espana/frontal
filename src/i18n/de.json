@@ -93,7 +93,11 @@
     "google": "Google Kalender (jeweils ein Zeitfenster)",
     "cerrar": "Schließen",
     "evento": "⚡ Strom zu {{precio}} €/kWh",
-    "descripcion": "Strompreis (PVPC) in diesem Zeitfenster:"
+    "descripcion": "Strompreis (PVPC) in diesem Zeitfenster:",
+    "avisoUna": "1 günstige Stunde ausgewählt",
+    "avisoVarias": "{{n}} günstige Stunden ausgewählt",
+    "avisoNinguna": "Für den Rest des Tages gibt es keine der günstigsten Stunden mehr",
+    "avisoPasado": "Die Stunden dieses Tages sind bereits vorbei"
   },
   "actualizacion": {
     "texto": "Neue Version verfügbar",

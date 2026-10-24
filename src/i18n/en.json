@@ -93,7 +93,11 @@
     "google": "Google Calendar (one slot at a time)",
     "cerrar": "Close",
     "evento": "⚡ Electricity at {{precio}} €/kWh",
-    "descripcion": "Electricity price (PVPC) in this time slot:"
+    "descripcion": "Electricity price (PVPC) in this time slot:",
+    "avisoUna": "1 cheap hour selected",
+    "avisoVarias": "{{n}} cheap hours selected",
+    "avisoNinguna": "There are no cheapest hours left for the rest of the day",
+    "avisoPasado": "The hours of this day have already passed"
   },
   "actualizacion": {
     "texto": "New version available",

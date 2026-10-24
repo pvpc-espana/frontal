@@ -114,6 +114,8 @@
           <button
             type="button"
             class="boton-baratas"
+            [class.pulsado]="botonBaratasPulsado()"
+            (animationend)="botonBaratasPulsado.set(false)"
             (click)="marcarBaratas()"
             [title]="'recordatorios.masBaratasAyuda' | transloco"
           >

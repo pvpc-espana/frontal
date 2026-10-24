@@ -93,7 +93,11 @@
     "google": "Google Calendar (una fascia alla volta)",
     "cerrar": "Chiudi",
     "evento": "⚡ Luce a {{precio}} €/kWh",
-    "descripcion": "Prezzo della luce (PVPC) in questa fascia:"
+    "descripcion": "Prezzo della luce (PVPC) in questa fascia:",
+    "avisoUna": "Selezionata 1 ora economica",
+    "avisoVarias": "Selezionate {{n}} ore economiche",
+    "avisoNinguna": "Non restano ore tra le più economiche per il resto della giornata",
+    "avisoPasado": "Le ore di questo giorno sono già passate"
   },
   "actualizacion": {
     "texto": "Nuova versione disponibile",

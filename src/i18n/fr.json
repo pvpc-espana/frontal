@@ -93,7 +93,11 @@
     "google": "Google Agenda (un créneau à la fois)",
     "cerrar": "Fermer",
     "evento": "⚡ Électricité à {{precio}} €/kWh",
-    "descripcion": "Prix de l’électricité (PVPC) sur ce créneau :"
+    "descripcion": "Prix de l’électricité (PVPC) sur ce créneau :",
+    "avisoUna": "1 heure bon marché sélectionnée",
+    "avisoVarias": "{{n}} heures bon marché sélectionnées",
+    "avisoNinguna": "Il ne reste aucune des heures les moins chères aujourd’hui",
+    "avisoPasado": "Les heures de ce jour sont déjà passées"
   },
   "actualizacion": {
     "texto": "Nouvelle version disponible",

@@ -352,6 +352,31 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+.boton-baratas {
+  transition: transform 0.15s ease;
+
+  &:active {
+    transform: scale(0.94);
+  }
+  &.pulsado {
+    animation: pulsacion 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+}
+
+@keyframes pulsacion {
+  0% {
+    transform: scale(0.92);
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--barata) 45%, transparent);
+  }
+  45% {
+    transform: scale(1.06);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0.7rem color-mix(in oklab, var(--barata) 0%, transparent);
+  }
+}
+
 .horas {
   display: grid;
   gap: 2px;
@@ -398,6 +423,11 @@
   &.activa {
     color: var(--acento);
     background: var(--acento-suave);
+
+    app-icono {
+      animation: campanada 0.6s ease;
+      transform-origin: 50% 10%;
+    }
   }
 }
 
@@ -505,6 +535,27 @@
 .icono-tramo {
   color: var(--color-tramo);
   --sobre-color: var(--superficie);
+}
+
+@keyframes campanada {
+  0% {
+    rotate: 0deg;
+    scale: 0.7;
+  }
+  30% {
+    rotate: 18deg;
+    scale: 1.15;
+  }
+  55% {
+    rotate: -14deg;
+  }
+  80% {
+    rotate: 6deg;
+  }
+  100% {
+    rotate: 0deg;
+    scale: 1;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

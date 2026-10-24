@@ -57,6 +57,18 @@
   </div>
 }
 
+<!-- Mensajes emergentes breves -->
+<div class="zona-avisos" role="status" aria-live="polite">
+  @if (avisos.actual(); as aviso) {
+    @for (a of [aviso]; track a.id) {
+      <p class="aviso-emergente" [class.exito]="a.tipo === 'exito'">
+        <app-icono [nombre]="a.tipo === 'exito' ? 'campana-activa' : 'reloj'" />
+        {{ a.texto }}
+      </p>
+    }
+  }
+</div>
+
 <dialog #ayudaIos class="ayuda-ios" (click)="cerrarAyuda($event)" aria-labelledby="titulo-ios">
   <h2 id="titulo-ios">{{ 'instalar.iosTitulo' | transloco }}</h2>
   <ol>

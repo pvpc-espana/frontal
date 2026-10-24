@@ -93,7 +93,11 @@
     "google": "Google Calendar (um período de cada vez)",
     "cerrar": "Fechar",
     "evento": "⚡ Luz a {{precio}} €/kWh",
-    "descripcion": "Preço da luz (PVPC) neste período:"
+    "descripcion": "Preço da luz (PVPC) neste período:",
+    "avisoUna": "1 hora barata selecionada",
+    "avisoVarias": "{{n}} horas baratas selecionadas",
+    "avisoNinguna": "Já não restam horas das mais baratas no resto do dia",
+    "avisoPasado": "As horas deste dia já passaram"
   },
   "actualizacion": {
     "texto": "Nova versão disponível",
