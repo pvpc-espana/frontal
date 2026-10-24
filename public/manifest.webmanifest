@@ -1,0 +1,13 @@
+{
+  "name": "PVPC · Precio de la luz",
+  "short_name": "PVPC",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b1020",
+  "theme_color": "#4f46e5",
+  "icons": [
+    { "src": "/icono.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "/icono-180.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/icono-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

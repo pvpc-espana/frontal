@@ -1,0 +1,77 @@
+{
+  "app": {
+    "nombre": "PVPC",
+    "subtitulo": "Hourly electricity price in Spain",
+    "titulo": "Electricity price · PVPC"
+  },
+  "meta": {
+    "titulo": "Electricity price in Spain today and tomorrow · PVPC",
+    "descripcion": "Spanish regulated electricity price (PVPC, 2.0TD tariff) hour by hour, today and tomorrow: cheapest and most expensive hours."
+  },
+  "navegacion": {
+    "etiqueta": "Change day",
+    "anterior": "Previous day",
+    "siguiente": "Next day",
+    "anteriorCorto": "Previous",
+    "siguienteCorto": "Next",
+    "irAHoy": "Go to today",
+    "hoy": "Go to today"
+  },
+  "relativo": {
+    "hoy": "Today",
+    "manana": "Tomorrow",
+    "ayer": "Yesterday"
+  },
+  "destacado": {
+    "ahora": "Now",
+    "seleccionada": "Selected hour",
+    "masBarata": "Cheapest hour"
+  },
+  "tramo": {
+    "barata": "Cheap",
+    "media": "Average",
+    "cara": "Expensive"
+  },
+  "icono": {
+    "muy-barata": "Among the cheapest",
+    "normal": "Normal",
+    "muy-cara": "Among the most expensive"
+  },
+  "resumen": {
+    "etiqueta": "Day summary",
+    "minimo": "Minimum",
+    "media": "Average",
+    "maximo": "Maximum"
+  },
+  "grafico": {
+    "titulo": "Price throughout the day"
+  },
+  "lista": {
+    "titulo": "Price per hour"
+  },
+  "sinDatos": {
+    "pendienteTitulo": "Prices not published yet",
+    "pendienteTexto": "Red Eléctrica publishes next-day prices from 8 pm (Spanish time). Check again in a while.",
+    "titulo": "No data for this day",
+    "texto": "There are no prices available for this date."
+  },
+  "error": {
+    "titulo": "Prices could not be loaded",
+    "texto": "Check your connection and try again.",
+    "reintentar": "Retry"
+  },
+  "ajustes": {
+    "idioma": "Language",
+    "tema": "Theme"
+  },
+  "tema": {
+    "auto": "Automatic",
+    "claro": "Light",
+    "oscuro": "Dark"
+  },
+  "pie": {
+    "fuente": "Data from",
+    "tarifa": "PVPC, 2.0TD tariff, mainland Spain, Balearic and Canary Islands. Prices in €/kWh, taxes not included.",
+    "codigo": "Open source on GitHub"
+  }
+}

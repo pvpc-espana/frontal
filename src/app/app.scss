@@ -1,0 +1,140 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-block-size: 100dvh;
+  max-inline-size: 72rem;
+  margin-inline: auto;
+  padding: max(0.75rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right))
+    max(1rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+}
+
+.cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-block: 0.25rem 1rem;
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: inherit;
+  text-decoration: none;
+  min-inline-size: 0;
+}
+
+.logo {
+  display: grid;
+  place-items: center;
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
+  border-radius: 0.85rem;
+  font-size: 1.15rem;
+  color: #fff;
+  background: linear-gradient(135deg, var(--acento), var(--acento-2));
+  box-shadow: 0 6px 18px -6px var(--acento);
+}
+
+.nombre {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+  min-inline-size: 0;
+
+  strong {
+    font-size: 1.1rem;
+    letter-spacing: -0.01em;
+  }
+  small {
+    font-size: 0.75rem;
+    color: var(--tenue);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.acciones {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.selector-idioma,
+.boton-tema {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-block-size: 2.5rem;
+  padding: 0 0.7rem;
+  border: 1px solid var(--borde);
+  border-radius: 999px;
+  background: var(--superficie);
+  box-shadow: var(--sombra-suave);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: inherit;
+  cursor: pointer;
+}
+
+.selector-idioma {
+  .codigo {
+    text-transform: uppercase;
+  }
+  .nombre-idioma {
+    display: none;
+  }
+
+  @media (min-width: 40rem) {
+    .codigo {
+      display: none;
+    }
+    .nombre-idioma {
+      display: inline;
+    }
+  }
+
+  select {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    opacity: 0;
+    font: inherit;
+    cursor: pointer;
+  }
+}
+
+.selector-idioma:focus-within,
+.boton-tema:focus-visible {
+  outline: 2px solid var(--acento);
+  outline-offset: 2px;
+}
+
+.texto-tema {
+  display: none;
+  @media (min-width: 40rem) {
+    display: inline;
+  }
+}
+
+.principal {
+  flex: 1;
+}
+
+.pie {
+  margin-block-start: 2rem;
+  font-size: 0.8rem;
+  text-align: center;
+  color: var(--tenue);
+
+  p {
+    margin: 0.25rem 0;
+  }
+  a {
+    color: inherit;
+  }
+}

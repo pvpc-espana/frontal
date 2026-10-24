@@ -1,0 +1,77 @@
+{
+  "app": {
+    "nombre": "PVPC",
+    "subtitulo": "Precio de la luz hora a hora",
+    "titulo": "Precio de la luz · PVPC"
+  },
+  "meta": {
+    "titulo": "Precio de la luz hoy y mañana · PVPC",
+    "descripcion": "Precio de la luz (PVPC, tarifa 2.0TD) hora a hora en España, hoy y mañana: horas más baratas y más caras."
+  },
+  "navegacion": {
+    "etiqueta": "Cambiar de día",
+    "anterior": "Día anterior",
+    "siguiente": "Día siguiente",
+    "anteriorCorto": "Anterior",
+    "siguienteCorto": "Siguiente",
+    "irAHoy": "Ir a hoy",
+    "hoy": "Ir a hoy"
+  },
+  "relativo": {
+    "hoy": "Hoy",
+    "manana": "Mañana",
+    "ayer": "Ayer"
+  },
+  "destacado": {
+    "ahora": "Ahora",
+    "seleccionada": "Hora seleccionada",
+    "masBarata": "Hora más barata"
+  },
+  "tramo": {
+    "barata": "Barata",
+    "media": "Media",
+    "cara": "Cara"
+  },
+  "icono": {
+    "muy-barata": "De las más baratas",
+    "normal": "Normal",
+    "muy-cara": "De las más caras"
+  },
+  "resumen": {
+    "etiqueta": "Resumen del día",
+    "minimo": "Mínimo",
+    "media": "Media",
+    "maximo": "Máximo"
+  },
+  "grafico": {
+    "titulo": "Evolución del día"
+  },
+  "lista": {
+    "titulo": "Precio por hora"
+  },
+  "sinDatos": {
+    "pendienteTitulo": "Precios aún no publicados",
+    "pendienteTexto": "Red Eléctrica publica los precios del día siguiente a partir de las 20:00. Vuelve a consultarlo en un rato.",
+    "titulo": "Sin datos para este día",
+    "texto": "No hay precios disponibles para esta fecha."
+  },
+  "error": {
+    "titulo": "No se han podido cargar los precios",
+    "texto": "Comprueba tu conexión e inténtalo de nuevo.",
+    "reintentar": "Reintentar"
+  },
+  "ajustes": {
+    "idioma": "Idioma",
+    "tema": "Tema"
+  },
+  "tema": {
+    "auto": "Automático",
+    "claro": "Claro",
+    "oscuro": "Oscuro"
+  },
+  "pie": {
+    "fuente": "Datos de",
+    "tarifa": "PVPC, tarifa 2.0TD, península, Baleares y Canarias. Precios en €/kWh con impuestos no incluidos.",
+    "codigo": "Código abierto en GitHub"
+  }
+}

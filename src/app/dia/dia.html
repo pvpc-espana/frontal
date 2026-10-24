@@ -1,0 +1,164 @@
+<app-navegacion-dia
+  class="navegacion-superior"
+  [fechaLarga]="fechaLarga()"
+  [relativo]="relativo()"
+  [puedeAnterior]="puedeAnterior()"
+  [puedeSiguiente]="puedeSiguiente()"
+  (anterior)="ir(-1)"
+  (siguiente)="ir(1)"
+  (hoy)="irAHoy()"
+/>
+
+<!-- Se recrea en cada día para repetir la animación de entrada -->
+@for (clave of [dia()]; track clave) {
+  <div
+    class="contenido"
+    appDeslizar
+    (izquierda)="ir(1)"
+    (derecha)="ir(-1)"
+    [class.desde-derecha]="direccion() === 'siguiente'"
+    [class.desde-izquierda]="direccion() === 'anterior'"
+    [attr.aria-busy]="estado() === 'cargando'"
+  >
+    @let d = destacado();
+    <div class="columna-principal">
+      <!-- Tarjeta principal: precio destacado o aviso de día sin datos -->
+      @if (estado() === 'cargando') {
+        <section class="tarjeta destacada esqueleto" aria-hidden="true">
+          <span class="linea corta"></span><span class="linea grande"></span
+          ><span class="linea"></span>
+        </section>
+      } @else if (estado() === 'error') {
+        <section class="tarjeta destacada aviso" role="alert">
+          <h2>{{ 'error.titulo' | transloco }}</h2>
+          <p>{{ 'error.texto' | transloco }}</p>
+          <button type="button" class="boton" (click)="reintentar()">
+            <app-icono nombre="reintentar" />{{ 'error.reintentar' | transloco }}
+          </button>
+        </section>
+      } @else if (d) {
+        <section class="tarjeta destacada" [class]="d.periodo.clase?.tramo" aria-live="polite">
+          <div class="cabecera-destacada">
+            <span class="motivo"><app-icono nombre="reloj" />{{ d.motivo | transloco }}</span>
+            <span class="franja"
+              >{{ d.periodo.etiqueta }}{{ d.periodo.zona ? ' ' + d.periodo.zona : '' }} –
+              {{ d.periodo.etiquetaFin }}</span
+            >
+          </div>
+          <p class="precio-grande">
+            <span class="cifra">{{ precio(d.periodo.precio) }}</span>
+            <span class="unidad">€/kWh</span>
+          </p>
+          @if (d.periodo.clase; as c) {
+            <span class="chip">
+              <app-icono [nombre]="c.icono" />
+              {{ 'icono.' + c.icono | transloco }} · {{ 'tramo.' + c.tramo | transloco }}
+            </span>
+          }
+        </section>
+      } @else {
+        <section class="tarjeta destacada aviso" aria-live="polite">
+          <app-icono nombre="reloj" class="icono-aviso" />
+          <h2>{{ (pendiente() ? 'sinDatos.pendienteTitulo' : 'sinDatos.titulo') | transloco }}</h2>
+          <p>{{ (pendiente() ? 'sinDatos.pendienteTexto' : 'sinDatos.texto') | transloco }}</p>
+        </section>
+      }
+
+      <!-- Resumen del día -->
+      <section class="resumen" [attr.aria-label]="'resumen.etiqueta' | transloco">
+        <div class="dato barata">
+          <span class="nombre">{{ 'resumen.minimo' | transloco }}</span>
+          <span class="valor">{{ precio(minimo()?.precio) }}</span>
+          <span class="detalle">{{ minimo()?.etiqueta ?? '—' }}</span>
+        </div>
+        <div class="dato">
+          <span class="nombre">{{ 'resumen.media' | transloco }}</span>
+          <span class="valor">{{ precio(datos()?.resumen?.media) }}</span>
+          <span class="detalle">€/kWh</span>
+        </div>
+        <div class="dato cara">
+          <span class="nombre">{{ 'resumen.maximo' | transloco }}</span>
+          <span class="valor">{{ precio(maximo()?.precio) }}</span>
+          <span class="detalle">{{ maximo()?.etiqueta ?? '—' }}</span>
+        </div>
+      </section>
+
+      <!-- Gráfico -->
+      <section class="tarjeta">
+        <h2 class="titulo-seccion">{{ 'grafico.titulo' | transloco }}</h2>
+        <app-grafico
+          [periodos]="periodos()"
+          [actual]="indiceActual()"
+          [seleccion]="seleccion()"
+          [media]="datos()?.resumen?.media ?? null"
+          [formatear]="precio.bind(this)"
+          (seleccionar)="seleccionar($event)"
+        />
+        <ul class="leyenda">
+          <li class="barata">{{ 'tramo.barata' | transloco }}</li>
+          <li class="media">{{ 'tramo.media' | transloco }}</li>
+          <li class="cara">{{ 'tramo.cara' | transloco }}</li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- Lista de horas: siempre todas, haya precios o no -->
+    <section class="tarjeta lista">
+      <h2 class="titulo-seccion">{{ 'lista.titulo' | transloco }}</h2>
+      <ol class="horas">
+        @for (p of periodos(); track p.inicio; let i = $index) {
+          <li>
+            <button
+              type="button"
+              class="hora"
+              [class]="p.clase?.tramo ?? 'sin-dato'"
+              [class.actual]="i === indiceActual()"
+              [class.elegida]="i === seleccion()"
+              [class.pasada]="indiceActual() >= 0 && i < indiceActual()"
+              [disabled]="p.precio === null"
+              [attr.aria-pressed]="i === seleccion()"
+              (click)="seleccionar(i)"
+            >
+              <span class="etiqueta">
+                <span
+                  >{{ p.etiqueta }}
+                  @if (p.zona) {
+                    <small class="zona">{{ p.zona }}</small>
+                  }
+                </span>
+                @if (i === indiceActual()) {
+                  <span class="ahora">{{ 'destacado.ahora' | transloco }}</span>
+                }
+              </span>
+              <span class="pista" aria-hidden="true">
+                <span
+                  class="relleno"
+                  [style.inline-size.%]="(p.clase?.ratio ?? 0) * 88 + 12"
+                ></span>
+              </span>
+              <span class="importe">{{ precio(p.precio) }}</span>
+              @if (p.clase; as c) {
+                <app-icono [nombre]="c.icono" class="icono-tramo" />
+                <span class="visualmente-oculto">{{ 'icono.' + c.icono | transloco }}</span>
+              } @else {
+                <span class="icono-tramo"></span>
+              }
+            </button>
+          </li>
+        }
+      </ol>
+    </section>
+  </div>
+}
+
+<app-navegacion-dia
+  class="navegacion-inferior"
+  [fechaLarga]="fechaLarga()"
+  [relativo]="relativo()"
+  [puedeAnterior]="puedeAnterior()"
+  [puedeSiguiente]="puedeSiguiente()"
+  [mostrarFecha]="false"
+  (anterior)="ir(-1)"
+  (siguiente)="ir(1)"
+  (hoy)="irAHoy()"
+/>

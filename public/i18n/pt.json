@@ -1,0 +1,77 @@
+{
+  "app": {
+    "nombre": "PVPC",
+    "subtitulo": "Preço da luz hora a hora",
+    "titulo": "Preço da luz · PVPC"
+  },
+  "meta": {
+    "titulo": "Preço da luz em Espanha hoje e amanhã · PVPC",
+    "descripcion": "Preço regulado da eletricidade em Espanha (PVPC, tarifa 2.0TD) hora a hora, hoje e amanhã: horas mais baratas e mais caras."
+  },
+  "navegacion": {
+    "etiqueta": "Mudar de dia",
+    "anterior": "Dia anterior",
+    "siguiente": "Dia seguinte",
+    "anteriorCorto": "Anterior",
+    "siguienteCorto": "Seguinte",
+    "irAHoy": "Ir para hoje",
+    "hoy": "Ir para hoje"
+  },
+  "relativo": {
+    "hoy": "Hoje",
+    "manana": "Amanhã",
+    "ayer": "Ontem"
+  },
+  "destacado": {
+    "ahora": "Agora",
+    "seleccionada": "Hora selecionada",
+    "masBarata": "Hora mais barata"
+  },
+  "tramo": {
+    "barata": "Barata",
+    "media": "Média",
+    "cara": "Cara"
+  },
+  "icono": {
+    "muy-barata": "Entre as mais baratas",
+    "normal": "Normal",
+    "muy-cara": "Entre as mais caras"
+  },
+  "resumen": {
+    "etiqueta": "Resumo do dia",
+    "minimo": "Mínimo",
+    "media": "Média",
+    "maximo": "Máximo"
+  },
+  "grafico": {
+    "titulo": "Evolução do dia"
+  },
+  "lista": {
+    "titulo": "Preço por hora"
+  },
+  "sinDatos": {
+    "pendienteTitulo": "Preços ainda não publicados",
+    "pendienteTexto": "A Red Eléctrica publica os preços do dia seguinte a partir das 20:00 (hora de Espanha). Volte a consultar daqui a pouco.",
+    "titulo": "Sem dados para este dia",
+    "texto": "Não há preços disponíveis para esta data."
+  },
+  "error": {
+    "titulo": "Não foi possível carregar os preços",
+    "texto": "Verifique a ligação e tente novamente.",
+    "reintentar": "Tentar novamente"
+  },
+  "ajustes": {
+    "idioma": "Idioma",
+    "tema": "Tema"
+  },
+  "tema": {
+    "auto": "Automático",
+    "claro": "Claro",
+    "oscuro": "Escuro"
+  },
+  "pie": {
+    "fuente": "Dados de",
+    "tarifa": "PVPC, tarifa 2.0TD, Espanha peninsular, Baleares e Canárias. Preços em €/kWh sem impostos.",
+    "codigo": "Código aberto no GitHub"
+  }
+}

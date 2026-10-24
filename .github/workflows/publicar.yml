@@ -3,6 +3,7 @@ name: Publicar
 on:
   push:
     branches: [main]
+  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -11,7 +12,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  group: pages-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -19,28 +20,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-
-      # Aplicación Angular (a partir de la fase 4)
-      - if: hashFiles('package.json') != ''
-        uses: actions/setup-node@v5
+      - uses: actions/setup-node@v5
         with:
           node-version: lts/*
           cache: npm
-      - if: hashFiles('package.json') != ''
-        run: |
-          npm ci
-          npm run build
-          cp dist/index.html dist/404.html
-
-      # Página provisional mientras no exista la aplicación
-      - if: hashFiles('package.json') == ''
-        run: cp -r provisional dist
-
-      - uses: actions/upload-pages-artifact@v4
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+      # ng build + páginas de entrada por idioma, 404.html y CSP (scripts/paginas-entrada.mjs)
+      - run: npm run build
+      - if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v4
         with:
           path: dist
 
   desplegar:
+    if: github.event_name != 'pull_request'
     needs: compilar
     runs-on: ubuntu-latest
     environment:

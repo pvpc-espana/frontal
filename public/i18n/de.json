@@ -1,0 +1,77 @@
+{
+  "app": {
+    "nombre": "PVPC",
+    "subtitulo": "Strompreis Stunde für Stunde",
+    "titulo": "Strompreis · PVPC"
+  },
+  "meta": {
+    "titulo": "Strompreis in Spanien heute und morgen · PVPC",
+    "descripcion": "Regulierter Strompreis in Spanien (PVPC, Tarif 2.0TD) Stunde für Stunde, heute und morgen: günstigste und teuerste Stunden."
+  },
+  "navegacion": {
+    "etiqueta": "Tag wechseln",
+    "anterior": "Vorheriger Tag",
+    "siguiente": "Nächster Tag",
+    "anteriorCorto": "Zurück",
+    "siguienteCorto": "Weiter",
+    "irAHoy": "Zu heute",
+    "hoy": "Zu heute"
+  },
+  "relativo": {
+    "hoy": "Heute",
+    "manana": "Morgen",
+    "ayer": "Gestern"
+  },
+  "destacado": {
+    "ahora": "Jetzt",
+    "seleccionada": "Ausgewählte Stunde",
+    "masBarata": "Günstigste Stunde"
+  },
+  "tramo": {
+    "barata": "Günstig",
+    "media": "Mittel",
+    "cara": "Teuer"
+  },
+  "icono": {
+    "muy-barata": "Unter den günstigsten",
+    "normal": "Normal",
+    "muy-cara": "Unter den teuersten"
+  },
+  "resumen": {
+    "etiqueta": "Tagesübersicht",
+    "minimo": "Minimum",
+    "media": "Durchschnitt",
+    "maximo": "Maximum"
+  },
+  "grafico": {
+    "titulo": "Tagesverlauf"
+  },
+  "lista": {
+    "titulo": "Preis pro Stunde"
+  },
+  "sinDatos": {
+    "pendienteTitulo": "Preise noch nicht veröffentlicht",
+    "pendienteTexto": "Red Eléctrica veröffentlicht die Preise für den nächsten Tag ab 20 Uhr (spanische Zeit). Schau später noch einmal vorbei.",
+    "titulo": "Keine Daten für diesen Tag",
+    "texto": "Für dieses Datum sind keine Preise verfügbar."
+  },
+  "error": {
+    "titulo": "Preise konnten nicht geladen werden",
+    "texto": "Prüfe deine Verbindung und versuche es erneut.",
+    "reintentar": "Erneut versuchen"
+  },
+  "ajustes": {
+    "idioma": "Sprache",
+    "tema": "Design"
+  },
+  "tema": {
+    "auto": "Automatisch",
+    "claro": "Hell",
+    "oscuro": "Dunkel"
+  },
+  "pie": {
+    "fuente": "Daten von",
+    "tarifa": "PVPC, Tarif 2.0TD, spanisches Festland, Balearen und Kanaren. Preise in €/kWh ohne Steuern.",
+    "codigo": "Open Source auf GitHub"
+  }
+}

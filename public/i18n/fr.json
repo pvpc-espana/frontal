@@ -1,0 +1,77 @@
+{
+  "app": {
+    "nombre": "PVPC",
+    "subtitulo": "Prix de l’électricité heure par heure",
+    "titulo": "Prix de l’électricité · PVPC"
+  },
+  "meta": {
+    "titulo": "Prix de l’électricité en Espagne aujourd’hui et demain · PVPC",
+    "descripcion": "Prix réglementé de l’électricité en Espagne (PVPC, tarif 2.0TD) heure par heure, aujourd’hui et demain : heures les moins chères et les plus chères."
+  },
+  "navegacion": {
+    "etiqueta": "Changer de jour",
+    "anterior": "Jour précédent",
+    "siguiente": "Jour suivant",
+    "anteriorCorto": "Précédent",
+    "siguienteCorto": "Suivant",
+    "irAHoy": "Aller à aujourd’hui",
+    "hoy": "Aujourd’hui"
+  },
+  "relativo": {
+    "hoy": "Aujourd’hui",
+    "manana": "Demain",
+    "ayer": "Hier"
+  },
+  "destacado": {
+    "ahora": "Maintenant",
+    "seleccionada": "Heure sélectionnée",
+    "masBarata": "Heure la moins chère"
+  },
+  "tramo": {
+    "barata": "Bon marché",
+    "media": "Moyen",
+    "cara": "Cher"
+  },
+  "icono": {
+    "muy-barata": "Parmi les moins chères",
+    "normal": "Normal",
+    "muy-cara": "Parmi les plus chères"
+  },
+  "resumen": {
+    "etiqueta": "Résumé de la journée",
+    "minimo": "Minimum",
+    "media": "Moyenne",
+    "maximo": "Maximum"
+  },
+  "grafico": {
+    "titulo": "Évolution de la journée"
+  },
+  "lista": {
+    "titulo": "Prix par heure"
+  },
+  "sinDatos": {
+    "pendienteTitulo": "Prix pas encore publiés",
+    "pendienteTexto": "Red Eléctrica publie les prix du lendemain à partir de 20 h (heure espagnole). Revenez un peu plus tard.",
+    "titulo": "Aucune donnée pour ce jour",
+    "texto": "Aucun prix n’est disponible pour cette date."
+  },
+  "error": {
+    "titulo": "Impossible de charger les prix",
+    "texto": "Vérifiez votre connexion et réessayez.",
+    "reintentar": "Réessayer"
+  },
+  "ajustes": {
+    "idioma": "Langue",
+    "tema": "Thème"
+  },
+  "tema": {
+    "auto": "Automatique",
+    "claro": "Clair",
+    "oscuro": "Sombre"
+  },
+  "pie": {
+    "fuente": "Données de",
+    "tarifa": "PVPC, tarif 2.0TD, Espagne péninsulaire, Baléares et Canaries. Prix en €/kWh hors taxes.",
+    "codigo": "Code source ouvert sur GitHub"
+  }
+}

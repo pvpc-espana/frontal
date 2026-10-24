@@ -1,0 +1,53 @@
+<header class="cabecera">
+  <a class="marca" [routerLink]="['/', idioma()]">
+    <span class="logo"><app-icono nombre="rayo" /></span>
+    <span class="nombre">
+      <strong>{{ 'app.nombre' | transloco }}</strong>
+      <small>{{ 'app.subtitulo' | transloco }}</small>
+    </span>
+  </a>
+
+  <div class="acciones">
+    <label class="selector-idioma">
+      <app-icono nombre="idioma" />
+      <span class="visualmente-oculto">{{ 'ajustes.idioma' | transloco }}</span>
+      <span class="codigo" aria-hidden="true">{{ idioma() }}</span>
+      <span class="nombre-idioma" aria-hidden="true">{{ nombres[idioma()] }}</span>
+      <!-- Select nativo transparente encima: accesible y con el selector del sistema -->
+      <select [value]="idioma()" (change)="cambiarIdioma($event)">
+        @for (i of idiomas; track i) {
+          <option [value]="i" [selected]="i === idioma()">{{ nombres[i] }}</option>
+        }
+      </select>
+    </label>
+
+    @let modo = tema.modo();
+    <button
+      type="button"
+      class="boton-tema"
+      (click)="tema.siguiente()"
+      [attr.aria-label]="('ajustes.tema' | transloco) + ': ' + ('tema.' + modo | transloco)"
+      [title]="('ajustes.tema' | transloco) + ': ' + ('tema.' + modo | transloco)"
+    >
+      <app-icono [nombre]="modo === 'auto' ? 'auto' : modo === 'claro' ? 'sol' : 'luna'" />
+      <span class="texto-tema">{{ 'tema.' + modo | transloco }}</span>
+    </button>
+  </div>
+</header>
+
+<main class="principal">
+  <router-outlet />
+</main>
+
+<footer class="pie">
+  <p>
+    {{ 'pie.fuente' | transloco }}
+    <a href="https://www.esios.ree.es/" rel="noopener" target="_blank">Red Eléctrica (e·sios)</a>.
+    {{ 'pie.tarifa' | transloco }}
+  </p>
+  <p>
+    <a href="https://github.com/pvpc-espana" rel="noopener" target="_blank">{{
+      'pie.codigo' | transloco
+    }}</a>
+  </p>
+</footer>

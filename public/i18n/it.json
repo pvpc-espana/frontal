@@ -1,0 +1,77 @@
+{
+  "app": {
+    "nombre": "PVPC",
+    "subtitulo": "Prezzo della luce ora per ora",
+    "titulo": "Prezzo della luce · PVPC"
+  },
+  "meta": {
+    "titulo": "Prezzo della luce in Spagna oggi e domani · PVPC",
+    "descripcion": "Prezzo regolato dell’elettricità in Spagna (PVPC, tariffa 2.0TD) ora per ora, oggi e domani: ore più economiche e più care."
+  },
+  "navegacion": {
+    "etiqueta": "Cambia giorno",
+    "anterior": "Giorno precedente",
+    "siguiente": "Giorno successivo",
+    "anteriorCorto": "Precedente",
+    "siguienteCorto": "Successivo",
+    "irAHoy": "Vai a oggi",
+    "hoy": "Vai a oggi"
+  },
+  "relativo": {
+    "hoy": "Oggi",
+    "manana": "Domani",
+    "ayer": "Ieri"
+  },
+  "destacado": {
+    "ahora": "Adesso",
+    "seleccionada": "Ora selezionata",
+    "masBarata": "Ora più economica"
+  },
+  "tramo": {
+    "barata": "Economica",
+    "media": "Media",
+    "cara": "Cara"
+  },
+  "icono": {
+    "muy-barata": "Tra le più economiche",
+    "normal": "Normale",
+    "muy-cara": "Tra le più care"
+  },
+  "resumen": {
+    "etiqueta": "Riepilogo del giorno",
+    "minimo": "Minimo",
+    "media": "Media",
+    "maximo": "Massimo"
+  },
+  "grafico": {
+    "titulo": "Andamento della giornata"
+  },
+  "lista": {
+    "titulo": "Prezzo per ora"
+  },
+  "sinDatos": {
+    "pendienteTitulo": "Prezzi non ancora pubblicati",
+    "pendienteTexto": "Red Eléctrica pubblica i prezzi del giorno successivo a partire dalle 20:00 (ora spagnola). Riprova tra poco.",
+    "titulo": "Nessun dato per questo giorno",
+    "texto": "Non ci sono prezzi disponibili per questa data."
+  },
+  "error": {
+    "titulo": "Impossibile caricare i prezzi",
+    "texto": "Controlla la connessione e riprova.",
+    "reintentar": "Riprova"
+  },
+  "ajustes": {
+    "idioma": "Lingua",
+    "tema": "Tema"
+  },
+  "tema": {
+    "auto": "Automatico",
+    "claro": "Chiaro",
+    "oscuro": "Scuro"
+  },
+  "pie": {
+    "fuente": "Dati di",
+    "tarifa": "PVPC, tariffa 2.0TD, Spagna peninsulare, Baleari e Canarie. Prezzi in €/kWh tasse escluse.",
+    "codigo": "Codice aperto su GitHub"
+  }
+}
