@@ -111,5 +111,10 @@
     "iosPaso2": "Choose “Add to Home Screen”",
     "iosPaso3": "Confirm with “Add”",
     "entendido": "Got it"
+  },
+  "conexion": {
+    "titulo": "No connection",
+    "texto": "Showing the prices saved on this device. Tap to retry.",
+    "cargando": "Loading…"
   }
 }

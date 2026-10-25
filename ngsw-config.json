@@ -17,20 +17,5 @@
         "files": ["/media/**", "/*.png", "/*.svg"]
       }
     }
-  ],
-  "dataGroups": [
-    {
-      "name": "precios",
-      "urls": [
-        "https://datos.pvpc.linaresdigital.com/**",
-        "https://raw.githubusercontent.com/pvpc-espana/datos/**"
-      ],
-      "cacheConfig": {
-        "strategy": "freshness",
-        "timeout": "6s",
-        "maxSize": 120,
-        "maxAge": "30d"
-      }
-    }
   ]
 }

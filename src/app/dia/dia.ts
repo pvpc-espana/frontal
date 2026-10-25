@@ -65,6 +65,11 @@ export class DiaComponent {
   });
 
   protected readonly estado = signal<Estado>('cargando');
+  /** Se muestran los precios guardados en el dispositivo porque falló la descarga. */
+  protected readonly sinConexion = signal(false);
+  protected readonly reintentando = signal(false);
+  /** Activa una breve animación cuando un reintento vuelve a fallar. */
+  protected readonly falloReintento = signal(false);
   /** Causa técnica del último error de carga, para poder diagnosticarlo. */
   protected readonly detalleError = signal('');
   protected readonly datos = signal<DiaPvpc | null>(null);
@@ -199,10 +204,17 @@ export class DiaComponent {
       // Si faltaban precios de hoy o mañana, pueden haberse publicado mientras tanto
       if (!this.datos() && this.pendiente()) this.cargar(this.dia(), true);
     };
+    // Al recuperar la conexión se reintenta lo que no se pudo descargar
+    const alConectar = () => {
+      if (this.sinConexion()) this.reintentarConexion();
+      else if (this.estado() === 'error') this.cargar(this.dia(), true);
+    };
     document.addEventListener('visibilitychange', alVolver);
+    window.addEventListener('online', alConectar);
     inject(DestroyRef).onDestroy(() => {
       clearInterval(reloj);
       document.removeEventListener('visibilitychange', alVolver);
+      window.removeEventListener('online', alConectar);
     });
 
     this.precios.indiceDisponible().then((indice) => this.indice.set(indice));
@@ -308,7 +320,7 @@ export class DiaComponent {
     const manana = sumarDias(this.hoy(), 1);
     this.precios.olvidar(manana);
     try {
-      const datos = await this.precios.dia(manana);
+      const { datos } = await this.precios.dia(manana);
       if (datos && this.dia() === sumarDias(manana, -1)) this.mananaDisponible.set(true);
     } catch {
       // Sin conexión: se reintentará en la próxima comprobación
@@ -321,9 +333,10 @@ export class DiaComponent {
     if (!forzar) this.recordatorios.set(new Set());
     this.estado.set('cargando');
     try {
-      const datos = await this.precios.dia(fecha);
+      const { datos, guardados } = await this.precios.dia(fecha);
       if (fecha !== this.dia()) return; // el usuario ya ha cambiado de día
       this.datos.set(datos);
+      this.sinConexion.set(guardados);
       this.estado.set('listo');
       this.mananaDisponible.set(false);
       this.comprobarManana(true);
@@ -336,7 +349,33 @@ export class DiaComponent {
       if (fecha !== this.dia()) return;
       this.detalleError.set(error instanceof Error ? error.message : String(error));
       this.datos.set(null);
+      this.sinConexion.set(false);
       this.estado.set('error');
+    }
+  }
+
+  /**
+   * Vuelve a intentar la descarga cuando se muestran precios guardados, sin vaciar la
+   * vista: si lo consigue se quita el aviso; si no, el aviso vuelve a mostrarse.
+   */
+  protected async reintentarConexion(): Promise<void> {
+    if (this.reintentando()) return;
+    const fecha = this.dia();
+    this.reintentando.set(true);
+    this.precios.olvidar(fecha);
+    try {
+      const { datos, guardados } = await this.precios.dia(fecha);
+      if (fecha !== this.dia()) return;
+      if (!guardados) {
+        this.datos.set(datos);
+        this.sinConexion.set(false);
+      } else {
+        this.falloReintento.set(true);
+      }
+    } catch {
+      if (fecha === this.dia()) this.falloReintento.set(true);
+    } finally {
+      this.reintentando.set(false);
     }
   }
 

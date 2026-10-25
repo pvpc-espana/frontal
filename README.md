@@ -12,9 +12,13 @@ Interfaz web de [pvpc.linaresdigital.com](https://pvpc.linaresdigital.com): prec
   de día; tema automático, claro u oscuro.
 - Clasificación de cada hora (color e icono) en `src/app/core/umbrales.ts`.
 - Recordatorios: horas marcadas exportables a `.ics` o Google Calendar.
-- Aplicación instalable (PWA) con *service worker* de Angular (`ngsw-config.json`): funciona
-  sin conexión con los últimos precios, avisa de versiones nuevas y muestra un botón
-  «Instalar» (diálogo del navegador en Chrome/Edge; instrucciones en iPhone/iPad).
+- Aplicación instalable (PWA) con *service worker* de Angular (`ngsw-config.json`): la app
+  abre sin conexión, avisa de versiones nuevas y muestra un botón «Instalar» (diálogo del
+  navegador en Chrome/Edge; instrucciones en iPhone/iPad).
+- Modo sin conexión: los precios de hoy y mañana se guardan en `localStorage` al
+  descargarlos. Si una descarga falla se muestran esos precios con el aviso «Sin conexión»
+  sobre la lista de horas; pulsándolo, o al recuperar la red (evento `online`), se
+  reintenta («Cargando…») y el aviso desaparece si lo consigue.
 
 ## Desarrollo
 
@@ -53,8 +57,8 @@ Instalada desde Chrome, Android crea una pequeña aplicación (WebAPK) que apare
     unos **435 KB** sin comprimir.
   - Recursos bajo demanda (fuente Inter e iconos): sólo se guardan los que se usan,
     normalmente menos de **100 KB**.
-  - Precios: unos **2,2 KB por día** consultado, con un máximo de 120 días y 30 días de
-    antigüedad (≈ 265 KB en el peor caso).
+- **Precios guardados** para el modo sin conexión: sólo hoy y mañana en `localStorage`
+  (unos **2,2 KB por día**, menos de 5 KB); los días pasados se borran solos.
 - **Batería: 0,0 %**. No hay procesos en segundo plano: la app sólo trabaja mientras está
   abierta.
 

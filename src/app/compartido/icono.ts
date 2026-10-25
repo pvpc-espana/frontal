@@ -22,7 +22,8 @@ export type NombreIcono =
   | 'cerrar'
   | 'instalar'
   | 'compartir'
-  | 'nuevo';
+  | 'nuevo'
+  | 'sin-conexion';
 
 /** Iconos SVG propios: aspecto idéntico en todos los sistemas (a diferencia de los emojis). */
 @Component({
@@ -123,6 +124,11 @@ export type NombreIcono =
         }
         @case ('cerrar') {
           <path d="M6 6l12 12M18 6L6 18" />
+        }
+        @case ('sin-conexion') {
+          <path
+            d="M2 8.8a15 15 0 014.2-2.7M9.5 5.2A15 15 0 0122 8.8M5 12.5a10 10 0 014.4-2.4M15 10.4a10 10 0 014 2.1M8.5 16a5 5 0 017 0M12 20h.01M3 3l18 18"
+          />
         }
         @case ('instalar') {
           <rect x="6" y="2.5" width="12" height="19" rx="2.5" />

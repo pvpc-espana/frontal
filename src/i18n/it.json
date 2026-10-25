@@ -111,5 +111,10 @@
     "iosPaso2": "Scegli «Aggiungi alla schermata Home»",
     "iosPaso3": "Conferma con «Aggiungi»",
     "entendido": "Ho capito"
+  },
+  "conexion": {
+    "titulo": "Nessuna connessione",
+    "texto": "Vengono mostrati i prezzi salvati su questo dispositivo. Tocca per riprovare.",
+    "cargando": "Caricamento…"
   }
 }

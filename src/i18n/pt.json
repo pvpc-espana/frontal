@@ -111,5 +111,10 @@
     "iosPaso2": "Escolha «Adicionar ao ecrã principal»",
     "iosPaso3": "Confirme com «Adicionar»",
     "entendido": "Percebi"
+  },
+  "conexion": {
+    "titulo": "Sem ligação",
+    "texto": "A mostrar os preços guardados neste dispositivo. Toque para tentar novamente.",
+    "cargando": "A carregar…"
   }
 }

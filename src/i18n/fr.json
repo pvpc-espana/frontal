@@ -111,5 +111,10 @@
     "iosPaso2": "Choisissez « Sur l’écran d’accueil »",
     "iosPaso3": "Confirmez avec « Ajouter »",
     "entendido": "Compris"
+  },
+  "conexion": {
+    "titulo": "Pas de connexion",
+    "texto": "Affichage des prix enregistrés sur cet appareil. Touchez pour réessayer.",
+    "cargando": "Chargement…"
   }
 }

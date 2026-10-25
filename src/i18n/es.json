@@ -111,5 +111,10 @@
     "iosPaso2": "Elige «Añadir a pantalla de inicio»",
     "iosPaso3": "Confirma con «Añadir»",
     "entendido": "Entendido"
+  },
+  "conexion": {
+    "titulo": "Sin conexión",
+    "texto": "Se muestran los precios guardados en este dispositivo. Pulsa para reintentar.",
+    "cargando": "Cargando…"
   }
 }

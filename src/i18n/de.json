@@ -111,5 +111,10 @@
     "iosPaso2": "Wähle „Zum Home-Bildschirm“",
     "iosPaso3": "Bestätige mit „Hinzufügen“",
     "entendido": "Verstanden"
+  },
+  "conexion": {
+    "titulo": "Keine Verbindung",
+    "texto": "Es werden die auf diesem Gerät gespeicherten Preise angezeigt. Zum erneuten Versuch tippen.",
+    "cargando": "Wird geladen…"
   }
 }
