@@ -1,3 +1,28 @@
+<!-- Aviso de precios guardados: arriba del todo para que se vea sin desplazarse -->
+@if (sinConexion()) {
+  <button
+    type="button"
+    class="aviso-conexion"
+    [class.reintentando]="reintentando()"
+    [class.fallo]="falloReintento()"
+    (animationend)="falloReintento.set(false)"
+    [disabled]="reintentando()"
+    (click)="reintentarConexion()"
+    aria-live="polite"
+  >
+    @if (reintentando()) {
+      <span class="indicador" aria-hidden="true"></span>
+      {{ 'conexion.cargando' | transloco }}
+    } @else {
+      <app-icono nombre="sin-conexion" />
+      <span>
+        <strong>{{ 'conexion.titulo' | transloco }}</strong>
+        {{ 'conexion.texto' | transloco }}
+      </span>
+    }
+  </button>
+}
+
 <app-navegacion-dia
   class="navegacion-superior"
   [fechaLarga]="fechaLarga()"
@@ -108,29 +133,6 @@
 
     <!-- Lista de horas: siempre todas, haya precios o no -->
     <section class="tarjeta lista">
-      @if (sinConexion()) {
-        <button
-          type="button"
-          class="aviso-conexion"
-          [class.reintentando]="reintentando()"
-          [class.fallo]="falloReintento()"
-          (animationend)="falloReintento.set(false)"
-          [disabled]="reintentando()"
-          (click)="reintentarConexion()"
-          aria-live="polite"
-        >
-          @if (reintentando()) {
-            <span class="indicador" aria-hidden="true"></span>
-            {{ 'conexion.cargando' | transloco }}
-          } @else {
-            <app-icono nombre="sin-conexion" />
-            <span>
-              <strong>{{ 'conexion.titulo' | transloco }}</strong>
-              {{ 'conexion.texto' | transloco }}
-            </span>
-          }
-        </button>
-      }
       <div class="cabecera-lista">
         <h2 class="titulo-seccion">{{ 'lista.titulo' | transloco }}</h2>
         @if (conPrecios()) {
