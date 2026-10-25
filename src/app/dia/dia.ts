@@ -209,12 +209,18 @@ export class DiaComponent {
       if (this.sinConexion()) this.reintentarConexion();
       else if (this.estado() === 'error') this.cargar(this.dia(), true);
     };
+    // Al perderla, lo que se ve ya no se puede actualizar: se avisa igual que con datos guardados
+    const alDesconectar = () => {
+      if (this.estado() === 'listo' && this.datos()) this.sinConexion.set(true);
+    };
     document.addEventListener('visibilitychange', alVolver);
     window.addEventListener('online', alConectar);
+    window.addEventListener('offline', alDesconectar);
     inject(DestroyRef).onDestroy(() => {
       clearInterval(reloj);
       document.removeEventListener('visibilitychange', alVolver);
       window.removeEventListener('online', alConectar);
+      window.removeEventListener('offline', alDesconectar);
     });
 
     this.precios.indiceDisponible().then((indice) => this.indice.set(indice));
@@ -336,7 +342,7 @@ export class DiaComponent {
       const { datos, guardados } = await this.precios.dia(fecha);
       if (fecha !== this.dia()) return; // el usuario ya ha cambiado de día
       this.datos.set(datos);
-      this.sinConexion.set(guardados);
+      this.sinConexion.set(guardados || (datos !== null && !navigator.onLine));
       this.estado.set('listo');
       this.mananaDisponible.set(false);
       this.comprobarManana(true);
