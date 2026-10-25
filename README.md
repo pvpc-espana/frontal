@@ -17,7 +17,7 @@ Interfaz web de [pvpc.linaresdigital.com](https://pvpc.linaresdigital.com): prec
   navegador en Chrome/Edge; instrucciones en iPhone/iPad).
 - Modo sin conexión: los precios de hoy y mañana se guardan en `localStorage` al
   descargarlos. Si una descarga falla se muestran esos precios con el aviso «Sin conexión»
-  sobre la lista de horas; pulsándolo, o al recuperar la red (evento `online`), se
+  bajo la cabecera, encima del selector de día; pulsándolo, o al recuperar la red (evento `online`), se
   reintenta («Cargando…») y el aviso desaparece si lo consigue.
 
 ## Desarrollo
